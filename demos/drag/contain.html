@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<link href="../base.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+<script src="../../event.drag/jquery.event.drag.js"></script>
+<script src="../../event.drop/jquery.event.drop.js"></script>
+<script src="../excanvas.min.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-98841-11']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<title>ThreeDubMedia &middot; jquery.event.drag</title>
+</head>
+<body>
+<script type="text/javascript">
+jQuery(function($){
+	var $div = $('#container');
+	$('.drag')
+		.drag("start",function( ev, dd ){
+			dd.limit = $div.offset();
+			dd.limit.bottom = dd.limit.top + $div.outerHeight() - $( this ).outerHeight();
+			dd.limit.right = dd.limit.left + $div.outerWidth() - $( this ).outerWidth();
+		})
+		.drag(function( ev, dd ){
+			$( this ).css({
+				top: Math.min( dd.limit.bottom, Math.max( dd.limit.top, dd.offsetY ) ),
+				left: Math.min( dd.limit.right, Math.max( dd.limit.left, dd.offsetX ) )
+			});   
+		});
+});
+</script>
+
+<h1>Contain Drag Demo</h1>
+<p>Drag the boxes around the screen, they remain confined within the dashed line.</p>
+<div id="container"></div>
+<div class="drag" style="left:40px;"></div>
+<div class="drag" style="left:120px;"></div>
+<div class="drag" style="left:200px;"></div>
+
+<style type="text/css">
+.drag {
+	position: absolute;
+	border: 1px solid #89B;
+	background: #BCE;
+	height: 58px;
+	width: 58px;
+	cursor: move;
+	top: 120px;
+	}
+#container {
+	height: 299px;
+	border: 1px dashed #888;
+	}
+</style></body>
+</html>
