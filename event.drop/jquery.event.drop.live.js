@@ -4,7 +4,7 @@
  * Open Source MIT License - http://threedubmedia.com/code/license
  */
 // Created: 2010-06-07
-// Updated: 2012-12-23 :: jQuery 1.8.x support
+// Updated: 2012-09-23 :: jQuery 1.8.x support
 // REQUIRES: jquery 1.7.x, event.drag 2.2, event.drop 2.2
 
 ;(function($){ // secure $ jQuery alias
