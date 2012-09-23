@@ -1,10 +1,10 @@
 /*! 
- * jquery.event.drag.live - v 2.2
+ * jquery.event.drag.live - v 2.2.1
  * Copyright (c) 2010 Three Dub Media - http://threedubmedia.com
  * Open Source MIT License - http://threedubmedia.com/code/license
  */
 // Created: 2010-06-07
-// Updated: 2012-05-21
+// Updated: 2012-12-23 :: jQuery 1.8.x support
 // REQUIRES: jquery 1.7.x, event.drag 2.2
 
 ;(function( $ ){
@@ -56,7 +56,7 @@ drag.delegate = function( event ){
 	// local refs
 	var elems = [], target, 
 	// element event structure
-	events = $.data( this, "events" ) || {};
+	events = $._data( this, "events" ) || {};
 	// query live events
 	$.each( events || [], function( key, arr ){
 		// no event type matches
