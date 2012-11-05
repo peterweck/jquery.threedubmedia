@@ -33,7 +33,7 @@ drag = $special.drag = {
 	// these are the default settings
 	defaults: {
 		which: 1, // mouse button pressed to start drag sequence
-		distance: 0, // distance dragged before dragstart
+		distance: 1, // distance dragged before dragstart
 		not: ':input', // selector to suppress dragging on target elements
 		handle: null, // selector to match handle target elements
 		relative: false, // true to use "position", false to use "offset"
