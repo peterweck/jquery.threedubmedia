@@ -12,7 +12,7 @@ $.each(["draginit","dragstart","drag","dragend"],function( i, type ){
 		}
 		
 		// set up the delegation
-		$('.drag').live( type, function( event ){
+		$('.drag').on( type, function( event ){
 			count += 1;
 			equals( this, $drag[0], event.type+" target" );
 		});

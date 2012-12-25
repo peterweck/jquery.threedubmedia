@@ -12,7 +12,7 @@ $.each(["dropinit","dropstart","drop","dropend"],function( i, type ){
 		}
 		
 		// set up the delegation
-		$('.drop').live( type, function( event ){
+		$('.drop').on( type, function( event ){
 			count += 1;
 			equals( this, $drop[0], event.type+" target" );
 		});
