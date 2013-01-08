@@ -364,15 +364,26 @@ drag.callback.prototype = {
 	}
 };
 
-// patch $.event.$dispatch to allow suppressing clicks
-var $dispatch = $event.dispatch;
-$event.dispatch = function( event ){
-	if ( $.data( this, "suppress."+ event.type ) - new Date().getTime() > 0 ){
-		$.removeData( this, "suppress."+ event.type );
-		return;
-	}
-	return $dispatch.apply( this, arguments );
+(function() {
+
+if (!$special.click) { $special.click = {}; }
+
+var $clickPreDispatch = $special.click.preDispatch;
+
+$special.click.preDispatch = function(event) {
+
+  // Hook to allow supression of clicks after a drag.
+  if ($.data( this, "suppress.click") - new Date().getTime() > 0 ) {
+    $.removeData( this, "suppress.click");
+    return false;
+  }
+
+  if ($clickPreDispatch) {
+    return $clickPreDispatch.apply(this, arguments);
+  }
 };
+
+})();
 
 // event fix hooks for touch events...
 var touchHooks = 
