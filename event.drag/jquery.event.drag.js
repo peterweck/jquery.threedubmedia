@@ -1,10 +1,10 @@
 /*! 
- * jquery.event.drag - v 2.2
+ * jquery.event.drag - v 2.3
  * Copyright (c) 2010 Three Dub Media - http://threedubmedia.com
  * Open Source MIT License - http://threedubmedia.com/code/license
  */
 // Created: 2008-06-04 
-// Updated: 2012-05-21
+// Updated: 2013-01-08
 // REQUIRES: jquery 1.7.x
 
 ;(function( $ ){
