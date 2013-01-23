@@ -56,7 +56,7 @@ drag.delegate = function( event ){
 	// local refs
 	var elems = [], target, 
 	// element event structure
-	events = $.data( this, "events" ) || {};
+	events = $._data( this, "events" ) || {};
 	// query live events
 	$.each( events || [], function( key, arr ){
 		// no event type matches
