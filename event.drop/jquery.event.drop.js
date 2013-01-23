@@ -246,6 +246,7 @@ drop = $.event.special.drop = {
 			// loop each stored drop target
 			do if ( elem = ia.droppable[i] ){ 
 				data = $.data( elem, drop.datakey );
+				if ( !data ) continue;
 				drp = data.location;
 				if ( !drp ) continue;
 				// find a winner: tolerance function is defined, call it
