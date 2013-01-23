@@ -15,7 +15,7 @@
 					width: 100
 				})
 				.bind("dragend",{ drop:'.drop' },function( event, dd ){
-					same( dd.drop, obj.dragend, "drop (dragend)" );
+					deepEqual( dd.drop, obj.dragend, "drop (dragend)" );
 				});
 			obj.$drop = $('<div class="drop"/><div class="extra"/>')
 				.appendTo( document.body )
@@ -67,10 +67,10 @@
 		// simulate a partial drag
 		obj.mouse();
 		// check counts
-		equals( obj.dropinit, 1, "dropinit");
-		equals( obj.dropstart, 0, "dropstart");
-		equals( obj.drop, 0, "drop");
-		equals( obj.dropend, 0, "dropend");
+		equal( obj.dropinit, 1, "dropinit");
+		equal( obj.dropstart, 0, "dropstart");
+		equal( obj.drop, 0, "drop");
+		equal( obj.dropend, 0, "dropend");
 		// continue
 		obj.done();
 	});
@@ -84,10 +84,10 @@
 		// simulate a partial drag
 		obj.mouse();
 		// check counts
-		equals( obj.dropinit, 1, "dropinit");
-		equals( obj.dropstart, 1, "dropstart");
-		equals( obj.drop, 0, "drop");
-		equals( obj.dropend, 0, "dropend");
+		equal( obj.dropinit, 1, "dropinit");
+		equal( obj.dropstart, 1, "dropstart");
+		equal( obj.drop, 0, "drop");
+		equal( obj.dropend, 0, "dropend");
 		// continue
 		obj.done();
 	});
@@ -102,10 +102,10 @@
 		// simulate a partial drag
 		obj.mouse();
 		// check counts
-		equals( obj.dropinit, 1, "dropinit");
-		equals( obj.dropstart, 1, "dropstart");
-		equals( obj.drop, 1, "drop");
-		equals( obj.dropend, 0, "dropend");
+		equal( obj.dropinit, 1, "dropinit");
+		equal( obj.dropstart, 1, "dropstart");
+		equal( obj.drop, 1, "drop");
+		equal( obj.dropend, 0, "dropend");
 		// continue
 		obj.done();
 	});
@@ -119,10 +119,10 @@
 		// simulate a partial drag
 		obj.mouse();
 		// check counts
-		equals( obj.dropinit, 1, "dropinit");
-		equals( obj.dropstart, 1, "dropstart");
-		equals( obj.drop, 1, "drop");
-		equals( obj.dropend, 1, "dropend");
+		equal( obj.dropinit, 1, "dropinit");
+		equal( obj.dropstart, 1, "dropstart");
+		equal( obj.drop, 1, "drop");
+		equal( obj.dropend, 1, "dropend");
 		// continue
 		obj.done();
 	});

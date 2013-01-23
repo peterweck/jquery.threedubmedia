@@ -178,7 +178,7 @@
 						.fire("mousemove", coord )
 						.fire("mouseup", coord )
 						.fire("click", coord );
-					equals( obj.count, expected[where][i], msg );
+					equal( obj.count, expected[where][i], msg );
 					next();
 				}, next );
 			}, obj.done );

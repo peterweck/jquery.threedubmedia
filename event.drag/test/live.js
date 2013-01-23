@@ -14,7 +14,7 @@ $.each(["draginit","dragstart","drag","dragend"],function( i, type ){
 		// set up the delegation
 		$(document).on( type, '.drag', function( event ){
 			count += 1;
-			equals( this, $drag[0], event.type+" target" );
+			equal( this, $drag[0], event.type+" target" );
 		});
 		// local refs
 		var count = 0,
@@ -23,7 +23,7 @@ $.each(["draginit","dragstart","drag","dragend"],function( i, type ){
 		
 		// manual triggering
 		ok( $drag.trigger( type ), '.trigger("'+ type +'")');
-		equals( count, 1, "event was triggered");
+		equal( count, 1, "event was triggered");
 	
 		// simulate a complete drag
 		$drag
@@ -32,7 +32,7 @@ $.each(["draginit","dragstart","drag","dragend"],function( i, type ){
 			.fire("mouseup",{ pageX:51, pageY:51 })
 			.fire("click",{ pageX:51, pageY:51 });
 		
-		equals( count, 2, "event was delegated");
+		equal( count, 2, "event was delegated");
 
 		// remove delegation
 		$(document).off( type, '.drag' );

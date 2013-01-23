@@ -56,11 +56,11 @@
 		// simulate a mouse drag
 		obj.mouse();
 		// check counts
-		equals( obj.draginit, 1, "draginit fired");
-		equals( obj.dragstart, 0, "dragstart did not fire");
-		equals( obj.drag, 0, "drag did not fire");
-		equals( obj.dragend, 0, "dragend did not fire");
-		equals( obj.click, 1, "click fired");
+		equal( obj.draginit, 1, "draginit fired");
+		equal( obj.dragstart, 0, "dragstart did not fire");
+		equal( obj.drag, 0, "drag did not fire");
+		equal( obj.dragend, 0, "dragend did not fire");
+		equal( obj.click, 1, "click fired");
 		// continue
 		obj.done();	
 	});
@@ -73,11 +73,11 @@
 		// simulate a mouse drag
 		obj.mouse();
 		// check counts
-		equals( obj.draginit, 1, "draginit fired");
-		equals( obj.dragstart, 1, "dragstart fired");
-		equals( obj.drag, 0, "drag did not fire");
-		equals( obj.dragend, 0, "dragend did not fire");
-		equals( obj.click, 1, "click fired");
+		equal( obj.draginit, 1, "draginit fired");
+		equal( obj.dragstart, 1, "dragstart fired");
+		equal( obj.drag, 0, "drag did not fire");
+		equal( obj.dragend, 0, "dragend did not fire");
+		equal( obj.click, 1, "click fired");
 		// continue
 		obj.done();	
 	});
@@ -90,11 +90,11 @@
 		// simulate a mouse drag
 		obj.mouse();
 		// check ocunts
-		equals( obj.draginit, 1, "draginit fired");
-		equals( obj.dragstart, 1, "dragstart fired");
-		equals( obj.drag, 1, "drag fired");
-		equals( obj.dragend, 1, "dragend fired");
-		equals( obj.click, 0, "click did not fire");
+		equal( obj.draginit, 1, "draginit fired");
+		equal( obj.dragstart, 1, "dragstart fired");
+		equal( obj.drag, 1, "drag fired");
+		equal( obj.dragend, 1, "dragend fired");
+		equal( obj.click, 0, "click did not fire");
 		// continue
 		obj.done();	
 	});
@@ -110,11 +110,11 @@
 		// simulate a mouse drag
 		obj.mouse();
 		// check counts
-		equals( obj.draginit, 1, "draginit fired");
-		equals( obj.dragstart, 1, "dragstart fired");
-		equals( obj.drag, 1, "drag fired");
-		equals( obj.dragend, 1, "dragend fired");
-		equals( obj.click, 0, "click did not fire");
+		equal( obj.draginit, 1, "draginit fired");
+		equal( obj.dragstart, 1, "dragstart fired");
+		equal( obj.drag, 1, "drag fired");
+		equal( obj.dragend, 1, "dragend fired");
+		equal( obj.click, 0, "click did not fire");
 		// continue
 		obj.done();	
 	});
@@ -127,11 +127,11 @@
 		// simulate a mouse drag
 		obj.mouse();
 		// check counts
-		equals( obj.draginit, 1, "draginit fired once");
-		equals( obj.dragstart, 2, "dragstart fired twice");
-		equals( obj.drag, 2, "drag fired twice");
-		equals( obj.dragend, 2, "dragend fired twice");
-		equals( obj.click, 0, "click did not fire");
+		equal( obj.draginit, 1, "draginit fired once");
+		equal( obj.dragstart, 2, "dragstart fired twice");
+		equal( obj.drag, 2, "drag fired twice");
+		equal( obj.dragend, 2, "dragend fired twice");
+		equal( obj.click, 0, "click did not fire");
 		// continue
 		obj.done();	
 	});
@@ -148,11 +148,11 @@
 		// simulate a mouse drag
 		obj.mouse();
 		// check counts	
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.click, 0, "click did not fire");
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.click, 0, "click did not fire");
 		// continue
 		obj.done();	
 	});

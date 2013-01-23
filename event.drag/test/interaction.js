@@ -37,11 +37,11 @@
 			.fire("mouseup",{ pageX:51, pageY:51 })
 			.fire("click");
 		// inspect results	
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.click, 0, "click");
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.click, 0, "click");
 		// clean-up interaction
 		obj.done();
 	});
@@ -57,11 +57,11 @@
 			.fire("mouseup",{ pageX:51, pageY:51 })
 			.fire("click");
 		// inspect results		
-		equals( obj.draginit, 0, "draginit");
-		equals( obj.dragstart, 0, "dragstart");
-		equals( obj.drag, 0, "drag");
-		equals( obj.dragend, 0, "dragend");
-		equals( obj.click, 1, "click");
+		equal( obj.draginit, 0, "draginit");
+		equal( obj.dragstart, 0, "dragstart");
+		equal( obj.drag, 0, "drag");
+		equal( obj.dragend, 0, "dragend");
+		equal( obj.click, 1, "click");
 		// simlate NON NOT interaction
 		obj.$div
 			.fire("mousedown",{ pageX:50, pageY:50 })
@@ -69,11 +69,11 @@
 			.fire("mouseup",{ pageX:51, pageY:51 })
 			.fire("click");
 		// inspect results		
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.click, 1, "click");
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.click, 1, "click");
 		// clean-up interaction
 		obj.done();
 	});
@@ -89,11 +89,11 @@
 			.fire("mouseup",{ pageX:51, pageY:51 })
 			.fire("click");
 		// inspect results		
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.click, 0, "click");	
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.click, 0, "click");	
 		// simulate NON HANDLE interaction
 		obj.$div
 			.fire("mousedown",{ pageX:50, pageY:50 })
@@ -101,11 +101,11 @@
 			.fire("mouseup",{ pageX:51, pageY:51 })
 			.fire("click");
 		// inspect results		
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.click, 1, "click");
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.click, 1, "click");
 		// clean-up interaction
 		obj.done();
 	});
@@ -121,11 +121,11 @@
 			.fire("mouseup",{ pageX:51, pageY:51 })
 			.fire("click");
 		// inspect results
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.click, 0, "click");	
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.click, 0, "click");	
 		// simulate NON WHICH interaction
 		obj.$div
 			.fire("mousedown",{ pageX:50, pageY:50 })
@@ -133,11 +133,11 @@
 			.fire("mouseup",{ pageX:51, pageY:51 })
 			.fire("click");
 		// inspect results
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.click, 1, "click");
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.click, 1, "click");
 		// clean-up interaction
 		obj.done();
 	});	
@@ -153,11 +153,11 @@
 			.fire("mouseup",{ pageX:51, pageY:51 })
 			.fire("click");
 		// inspect results		
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 0, "dragstart");
-		equals( obj.drag, 0, "drag");
-		equals( obj.dragend, 0, "dragend");
-		equals( obj.click, 1, "click");	
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 0, "dragstart");
+		equal( obj.drag, 0, "drag");
+		equal( obj.dragend, 0, "dragend");
+		equal( obj.click, 1, "click");	
 		// simulate DISTANCE interaction
 		obj.$div
 			.fire("mousedown",{ pageX:50, pageY:50 })
@@ -165,11 +165,11 @@
 			.fire("mouseup",{ pageX:53, pageY:54 })
 			.fire("click");
 		// inspect results		
-		equals( obj.draginit, 2, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.click, 1, "click");
+		equal( obj.draginit, 2, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.click, 1, "click");
 		// clean-up interaction
 		obj.done();
 	});
@@ -186,11 +186,11 @@
 			.fire("mouseup",{ pageX:51, pageY:51 })
 			.fire("click");
 		// inspect results	
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.click, 1, "click");	
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.click, 1, "click");	
 		// clean-up interaction
 		obj.done();
 	});
