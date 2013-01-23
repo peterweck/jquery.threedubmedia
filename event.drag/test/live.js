@@ -12,7 +12,7 @@ $.each(["draginit","dragstart","drag","dragend"],function( i, type ){
 		}
 		
 		// set up the delegation
-		$('.drag').live( type, function( event ){
+		$(document).on( type, '.drag', function( event ){
 			count += 1;
 			equals( this, $drag[0], event.type+" target" );
 		});
@@ -35,7 +35,7 @@ $.each(["draginit","dragstart","drag","dragend"],function( i, type ){
 		equals( count, 2, "event was delegated");
 
 		// remove delegation
-		$('.drag').die( type );
+		$(document).off( type, '.drag' );
 		$drag.remove();
 	});
 });
