@@ -29,17 +29,17 @@ else {
 			// test the document too for bubbling
 			$div.add( document ).bind( type, function( ev ){
 				
-				equals( ev.currentTarget, this, "event.currentTarget");
-				equals( ev.target, $div[0], "event.target" );
-				equals( ev.type, type, "event.type" );
-				equals( ev.pageX, props.pageX, "event.pageX" );
-				equals( ev.pageY, props.pageY, "event.pageY" );
-				equals( ev.ctrlKey, props.ctrlKey, "event.ctrlKey" );
-				equals( ev.altKey, props.altKey, "event.altKey" );
-				equals( ev.shiftKey, props.shiftKey, "event.shiftKey" );
-				equals( ev.metaKey, props.metaKey, "event.metaKey" );
-				equals( ev.button, props.button, "event.button" );
-				equals( ev.bubbles, props.bubbles, "event.bubbles" );
+				equal( ev.currentTarget, this, "event.currentTarget");
+				equal( ev.target, $div[0], "event.target" );
+				equal( ev.type, type, "event.type" );
+				equal( ev.pageX, props.pageX, "event.pageX" );
+				equal( ev.pageY, props.pageY, "event.pageY" );
+				equal( ev.ctrlKey, props.ctrlKey, "event.ctrlKey" );
+				equal( ev.altKey, props.altKey, "event.altKey" );
+				equal( ev.shiftKey, props.shiftKey, "event.shiftKey" );
+				equal( ev.metaKey, props.metaKey, "event.metaKey" );
+				equal( ev.button, props.button, "event.button" );
+				equal( ev.bubbles, props.bubbles, "event.bubbles" );
 			});
 			
 			// make sure that metaKey and ctrlKey are equal

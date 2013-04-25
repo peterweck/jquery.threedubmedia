@@ -64,14 +64,14 @@
 		// simulate DEFAULT interaction
 		obj.mouse();
 		// inspect results	
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.dropinit, 1, "dropinit");
-		equals( obj.dropstart, 1, "dropstart");
-		equals( obj.drop, 1, "drop");
-		equals( obj.dropend, 1, "dropend");
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.dropinit, 1, "dropinit");
+		equal( obj.dropstart, 1, "dropstart");
+		equal( obj.drop, 1, "drop");
+		equal( obj.dropend, 1, "dropend");
 		// continue
 		obj.done();
 	});
@@ -82,14 +82,14 @@
 		// simulate drag
 		obj.mouse();
 		// inspect results		
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.dropinit, 0, "dropinit");
-		equals( obj.dropstart, 0, "dropstart");
-		equals( obj.drop, 0, "drop");
-		equals( obj.dropend, 0, "dropend");
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.dropinit, 0, "dropinit");
+		equal( obj.dropstart, 0, "dropstart");
+		equal( obj.drop, 0, "drop");
+		equal( obj.dropend, 0, "dropend");
 		// continue
 		obj.done();
 	});
@@ -100,14 +100,14 @@
 		// simulate drag
 		obj.mouse();
 		// inspect results		
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.dropinit, 0, "dropinit");
-		equals( obj.dropstart, 0, "dropstart");
-		equals( obj.drop, 0, "drop");
-		equals( obj.dropend, 0, "dropend");
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.dropinit, 0, "dropinit");
+		equal( obj.dropstart, 0, "dropstart");
+		equal( obj.drop, 0, "drop");
+		equal( obj.dropend, 0, "dropend");
 		// continue
 		obj.done();
 	});
@@ -118,14 +118,14 @@
 		// simulate drag
 		obj.mouse();
 		// inspect results		
-		equals( obj.draginit, 1, "draginit");
-		equals( obj.dragstart, 1, "dragstart");
-		equals( obj.drag, 1, "drag");
-		equals( obj.dragend, 1, "dragend");
-		equals( obj.dropinit, 1, "dropinit");
-		equals( obj.dropstart, 1, "dropstart");
-		equals( obj.drop, 1, "drop");
-		equals( obj.dropend, 1, "dropend");
+		equal( obj.draginit, 1, "draginit");
+		equal( obj.dragstart, 1, "dragstart");
+		equal( obj.drag, 1, "drag");
+		equal( obj.dragend, 1, "dragend");
+		equal( obj.dropinit, 1, "dropinit");
+		equal( obj.dropstart, 1, "dropstart");
+		equal( obj.drop, 1, "drop");
+		equal( obj.dropend, 1, "dropend");
 		// continue
 		obj.done();
 	});

@@ -46,9 +46,9 @@
 			// wait 100 ms (persist)
 			setTimeout(function(){
 				// inspect results	
-				equals( obj.lingerstart, 1, "lingerstart");
-				equals( obj.linger, 0, "linger");
-				equals( obj.lingerend, 0, "lingerend");	
+				equal( obj.lingerstart, 1, "lingerstart");
+				equal( obj.linger, 0, "linger");
+				equal( obj.lingerend, 0, "lingerend");	
 				obj.done();
 			}, 100 );
 		}, 100 );
@@ -73,9 +73,9 @@
 			// wait 100 ms (persist)
 			setTimeout(function(){
 				// inspect results	
-				equals( obj.lingerstart, 1, "lingerstart");
-				equals( obj.linger, 3, "linger");
-				equals( obj.lingerend, 0, "lingerend");	
+				equal( obj.lingerstart, 1, "lingerstart");
+				equal( obj.linger, 3, "linger");
+				equal( obj.lingerend, 0, "lingerend");	
 				obj.done();
 			}, 100 );
 		}, 350 );
@@ -100,9 +100,9 @@
 			// wait 300 ms (3x persist)
 			setTimeout(function(){
 				// inspect results	
-				equals( obj.lingerstart, 1, "lingerstart");
-				equals( obj.linger, 1, "linger");
-				equals( obj.lingerend, 3, "lingerend");	
+				equal( obj.lingerstart, 1, "lingerstart");
+				equal( obj.linger, 1, "linger");
+				equal( obj.lingerend, 3, "lingerend");	
 				obj.done();
 			}, 350 );
 		}, 300 );

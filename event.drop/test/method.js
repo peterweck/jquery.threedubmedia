@@ -16,14 +16,14 @@ $.each(['init','start','','end'],function( i, type ){
 		
 		ok( $elem.drop( type, fn )[0] == elem, ".drop("+( type ? '"'+ type +'",' : "" )+" fn )" );
 		ok( $.data( elem, $.event.special.drop.datakey ), "drop data exists" );
-		ok( $.data( elem, "events" ), "event data exists" );
-		ok( $.data( elem, "events" )[ 'drop'+type ][0], '"drop'+ type +'" event handler added' );
+		ok( $._data( elem, "events" ), "event data exists" );
+		ok( $._data( elem, "events" )[ 'drop'+type ][0], '"drop'+ type +'" event handler added' );
 		
 		ok( $elem.drop( type )[0] == elem, ".drop("+( type ? '"'+ type +'"' : "" )+")" );
 		ok( count == 1, "handler was triggered");
 		
 		ok( $elem.unbind( "drop"+ type )[0] == elem, '.unbind("drop'+ type +'")' );
-		ok( !$.data( elem, "events" ), "event data removed" );
+		ok( !$._data( elem, "events" ), "event data removed" );
 		ok( !$.data( elem, $.event.special.drag.datakey ), "drag data removed" );
 				
 		$elem.remove();

@@ -27,8 +27,8 @@ $.each(['draginit','dragstart','drag','dragend'],function( i, type ){
 		
 		ok( $elem.bind( type, fn )[0] == elem, '.bind("'+ type +'", fn )' );
 		ok( data = $.data( elem, $.event.special.drag.datakey ), "drag data exists" );
-		ok( $.data( elem, "events" ), "event data exists" );
-		ok( $.data( elem, "events" )[ type ][0], '"'+ type +'" event handler added' );
+		ok( $._data( elem, "events" ), "event data exists" );
+		ok( $._data( elem, "events" )[ type ][0], '"'+ type +'" event handler added' );
 		
 		ok( data.which == def.which, '"which" default stored' );
 		ok( data.distance == def.distance, '"distance" default stored' );
@@ -42,13 +42,13 @@ $.each(['draginit','dragstart','drag','dragend'],function( i, type ){
 		ok( count == 1, "handler was triggered");
 		
 		ok( $elem.unbind( type )[0] == elem, '.unbind("'+ type +'")' );
-		ok( !$.data( elem, "events" ), "event data removed" );
+		ok( !$._data( elem, "events" ), "event data removed" );
 		ok( !$.data( elem, $.event.special.drag.datakey ), "drag data removed" );
 		
 		ok( $elem.bind( type, opts, fn )[0] == elem, '.bind("'+ type +'", data, fn )' );
 		ok( data = $.data( elem, $.event.special.drag.datakey ), "drag data exists" );
-		ok( $.data( elem, "events" ), "event data exists" );
-		ok( $.data( elem, "events" )[ type ][0], '"drag'+ type +'" event handler added' );
+		ok( $._data( elem, "events" ), "event data exists" );
+		ok( $._data( elem, "events" )[ type ][0], '"drag'+ type +'" event handler added' );
 		
 		ok( data.which == opts.which, '"which" option stored' );
 		ok( data.distance == opts.distance, '"distance" option stored' );

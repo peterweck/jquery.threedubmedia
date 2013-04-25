@@ -12,9 +12,9 @@ $.each(["dropinit","dropstart","drop","dropend"],function( i, type ){
 		}
 		
 		// set up the delegation
-		$('.drop').on( type, function( event ){
+		$(document).on( type, '.drop', function( event ){
 			count += 1;
-			equals( this, $drop[0], event.type+" target" );
+			equal( this, $drop[0], event.type+" target" );
 		});
 		// local refs
 		var count = 0,
@@ -38,7 +38,7 @@ $.each(["dropinit","dropstart","drop","dropend"],function( i, type ){
 		
 		// check triggering of the event handlers
 		ok( $drop.trigger( type ), '.trigger("'+ type +'")');
-		equals( count, 1, "event was triggered");
+		equal( count, 1, "event was triggered");
 				
 		// simulate a complete drag
 		$drag
@@ -48,10 +48,10 @@ $.each(["dropinit","dropstart","drop","dropend"],function( i, type ){
 			.fire("click",{ pageX:51, pageY:51 });
 		
 		// check the event handler counts
-		equals( count, 2, "event was delegated");
+		equal( count, 2, "event was delegated");
 				
 		// remove delegation
-		$('.drop').die( type );
+		$(document).off( type, '.drop' );
 		$drag.remove();
 		$drop.remove();
 		

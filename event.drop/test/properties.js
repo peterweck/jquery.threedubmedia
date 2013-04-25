@@ -17,20 +17,20 @@ $.each(["init","start","","end"],function( i, type ){
 				width: 100
 			})
 			.bind("draginit",function( ev, dd ){
-				same( dd.drop, [], 'draginit: "drop"' );
-				same( dd.available, [], 'draginit: "available"' );
+				deepEqual( dd.drop, [], 'draginit: "drop"' );
+				deepEqual( dd.available, [], 'draginit: "available"' );
 			})
 			.bind("dragstart",function( ev, dd ){
-				same( dd.drop, [], 'dragstart: "drop"' );
-				same( dd.available, available, 'dragstart: "available"' );
+				deepEqual( dd.drop, [], 'dragstart: "drop"' );
+				deepEqual( dd.available, available, 'dragstart: "available"' );
 			})
 			.bind("drag",function( ev, dd ){
-				same( dd.drop, [], 'drag: "drop"' );
-				same( dd.available, available, 'drag: "available"' );
+				deepEqual( dd.drop, [], 'drag: "drop"' );
+				deepEqual( dd.available, available, 'drag: "available"' );
 			})
 			.bind("dragend",function( ev, dd ){
-				same( dd.drop, drop, 'dragend: "drop"' );
-				same( dd.available, available, 'dragend: "available"' );
+				deepEqual( dd.drop, drop, 'dragend: "drop"' );
+				deepEqual( dd.available, available, 'dragend: "available"' );
 				$drag.remove();
 				$drop.remove();
 			}),
@@ -44,8 +44,8 @@ $.each(["init","start","","end"],function( i, type ){
 				width: 100
 			})
 			.drop( type, function( ev, dd ){
-				same( dd.drop, i < 2 ? [] : drop, 'drop'+ type +': "drop"' );
-				same( dd.available, i < 1 ? [] : available, 'drop'+ type +': "available"' );
+				deepEqual( dd.drop, i < 2 ? [] : drop, 'drop'+ type +': "drop"' );
+				deepEqual( dd.available, i < 1 ? [] : available, 'drop'+ type +': "available"' );
 			}),
 		available = $drop.toArray(),
 		drop = $drop.eq(0).toArray();

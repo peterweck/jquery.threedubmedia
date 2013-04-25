@@ -1,11 +1,11 @@
 /*! 
- * jquery.event.drop.live - v 2.2
+ * jquery.event.drop.live - v 2.2.1
  * Copyright (c) 2010 Three Dub Media - http://threedubmedia.com
  * Open Source MIT License - http://threedubmedia.com/code/license
  */
 // Created: 2010-06-07
 // Updated: 2012-05-21
-// REQUIRES: jquery 1.7.x, event.drag 2.2, event.drop 2.2
+// REQUIRES: jquery 1.8, event.drag 2.2.1, event.drop 2.2.1
 
 ;(function($){ // secure $ jQuery alias
 
@@ -56,7 +56,7 @@ drop.delegate = function( event, dd ){
 	// local refs
 	var elems = [], $targets, 
 	// element event structure
-	events = $.data( this, "events" ) || {};
+	events = $._data( this, "events" ) || {};
 	// query live events
 	$.each( events || [], function( key, arr ){
 		// no event type matches

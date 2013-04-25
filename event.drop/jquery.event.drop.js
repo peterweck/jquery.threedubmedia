@@ -1,11 +1,11 @@
 /*! 
- * jquery.event.drop - v 2.2
+ * jquery.event.drop - v 2.2.1
  * Copyright (c) 2010 Three Dub Media - http://threedubmedia.com
  * Open Source MIT License - http://threedubmedia.com/code/license
  */
 // Created: 2008-06-04 
 // Updated: 2012-05-21
-// REQUIRES: jquery 1.7.x, event.drag 2.2
+// REQUIRES: jquery 1.8, event.drag 2.2.1
 
 ;(function($){ // secure $ jQuery alias
 
@@ -119,6 +119,7 @@ drop = $.event.special.drop = {
 			// draginit, from $.event.special.drag
 			case 'mousedown': // DROPINIT >>
 			case 'touchstart': // DROPINIT >>
+			case 'MSPointerDown': // DROPINIT >>
 				// collect and assign the drop targets
 				$targets =  $( drop.targets );
 				if ( typeof dd.drop == "string" )
@@ -138,6 +139,7 @@ drop = $.event.special.drop = {
 			// drag, from $.event.special.drag
 			case 'mousemove': // TOLERATE >>
 			case 'touchmove': // TOLERATE >>
+			case 'MSPointerMove': // TOLERATE >>
 				drop.event = event; // store the mousemove event
 				if ( !drop.timer )
 					// monitor drop targets
@@ -146,6 +148,7 @@ drop = $.event.special.drop = {
 			// dragend, from $.event.special.drag
 			case 'mouseup': // DROP >> DROPEND >>
 			case 'touchend': // DROP >> DROPEND >>
+			case 'MSPointerUp': // DROP >> DROPEND >>
 				drop.timer = clearTimeout( drop.timer ); // delete timer	
 				if ( dd.propagates ){
 					$special.drag.hijack( event, "drop", dd ); 
@@ -243,6 +246,7 @@ drop = $.event.special.drop = {
 			// loop each stored drop target
 			do if ( elem = ia.droppable[i] ){ 
 				data = $.data( elem, drop.datakey );
+				if ( !data ) continue;
 				drp = data.location;
 				if ( !drp ) continue;
 				// find a winner: tolerance function is defined, call it

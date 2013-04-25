@@ -42,9 +42,9 @@
 			// wait 400 ms (default persist)
 			setTimeout(function(){
 				// inspect results	
-				equals( obj.counts.lingerstart, 1, "lingerstart");
-				equals( obj.counts.linger, 1, "linger");
-				equals( obj.counts.lingerend, 1, "lingerend");	
+				equal( obj.counts.lingerstart, 1, "lingerstart");
+				equal( obj.counts.linger, 1, "linger");
+				equal( obj.counts.lingerend, 1, "lingerend");	
 				obj.done();
 			}, 400 );
 		}, 100 );	
@@ -66,9 +66,9 @@
 			// wait 400 ms (default persist)
 			setTimeout(function(){
 				// inspect results	
-				equals( obj.counts.lingerstart, 1, "lingerstart");
-				equals( obj.counts.linger, 0, "linger");
-				equals( obj.counts.lingerend, 0, "lingerend");
+				equal( obj.counts.lingerstart, 1, "lingerstart");
+				equal( obj.counts.linger, 0, "linger");
+				equal( obj.counts.lingerend, 0, "lingerend");
 				obj.done();
 			}, 400 );
 		}, 100 );
@@ -90,9 +90,9 @@
 			// wait 400 ms (default persist)
 			setTimeout(function(){
 				// inspect results	
-				equals( obj.counts.lingerstart, 1, "lingerstart");
-				equals( obj.counts.linger, 1, "linger");
-				equals( obj.counts.lingerend, 1, "lingerend");
+				equal( obj.counts.lingerstart, 1, "lingerstart");
+				equal( obj.counts.linger, 1, "linger");
+				equal( obj.counts.lingerend, 1, "lingerend");
 				obj.done();
 			}, 400 );
 		}, 100 );
@@ -114,9 +114,9 @@
 			// wait 400 ms (default persist)
 			setTimeout(function(){
 				// inspect results	
-				equals( obj.counts.lingerstart, 1, "lingerstart");
-				equals( obj.counts.linger, 0, "linger");
-				equals( obj.counts.lingerend, 0, "lingerend");
+				equal( obj.counts.lingerstart, 1, "lingerstart");
+				equal( obj.counts.linger, 0, "linger");
+				equal( obj.counts.lingerend, 0, "lingerend");
 				obj.done();
 			}, 400 );
 		}, 100 );
@@ -138,9 +138,9 @@
 			// wait 400 ms (default persist)
 			setTimeout(function(){
 				// inspect results	
-				equals( obj.counts.lingerstart, 1, "lingerstart");
-				equals( obj.counts.linger, 1, "linger");
-				equals( obj.counts.lingerend, 1, "lingerend");
+				equal( obj.counts.lingerstart, 1, "lingerstart");
+				equal( obj.counts.linger, 1, "linger");
+				equal( obj.counts.lingerend, 1, "lingerend");
 				obj.done();
 			}, 400 );
 		}, 200 );
@@ -162,9 +162,9 @@
 			// wait < 200 ms (custom persist)
 			setTimeout(function(){
 				// inspect results	
-				equals( obj.counts.lingerstart, 1, "lingerstart");
-				equals( obj.counts.linger, 1, "linger");
-				equals( obj.counts.lingerend, 0, "lingerend");
+				equal( obj.counts.lingerstart, 1, "lingerstart");
+				equal( obj.counts.linger, 1, "linger");
+				equal( obj.counts.lingerend, 0, "lingerend");
 				setTimeout(function(){
 					obj.done();
 				}, 100 );
@@ -188,9 +188,9 @@
 			// wait 200 ms (custom persist)
 			setTimeout(function(){
 				// inspect results	
-				equals( obj.counts.lingerstart, 1, "lingerstart");
-				equals( obj.counts.linger, 1, "linger");
-				equals( obj.counts.lingerend, 1, "lingerend");
+				equal( obj.counts.lingerstart, 1, "lingerstart");
+				equal( obj.counts.linger, 1, "linger");
+				equal( obj.counts.lingerend, 1, "lingerend");
 				obj.done();
 			}, 200 );
 		}, 100 );
@@ -217,9 +217,9 @@
 				// wait 200 ms (custom persist)
 				setTimeout(function(){
 					// inspect results	
-					equals( obj.counts.lingerstart, 1, "lingerstart");
-					equals( obj.counts.linger, 1, "linger");
-					equals( obj.counts.lingerend, 0, "lingerend");
+					equal( obj.counts.lingerstart, 1, "lingerstart");
+					equal( obj.counts.linger, 1, "linger");
+					equal( obj.counts.lingerend, 0, "lingerend");
 					obj.done();
 				}, 200 );
 			}, 100 );

@@ -22,8 +22,8 @@ $.each(['start','','end'],function( i, type ){
 		
 		ok( $elem.linger( type, fn )[0] == elem, ".linger("+( type ? "'"+ type +"'," : "" )+" fn )" );
 		ok( $.data( elem, $.event.special.linger.datakey ), "linger data exists" );
-		ok( $.data( elem, "events" ), "event data exists" );
-		ok( $.data( elem, "events" )[ 'linger'+type ][0], 'linger'+ type +" event handler added" );
+		ok( $._data( elem, "events" ), "event data exists" );
+		ok( $._data( elem, "events" )[ 'linger'+type ][0], 'linger'+ type +" event handler added" );
 		
 		ok( $elem.linger( type )[0] == elem, ".linger("+( type ? "'"+ type +"'" : "" )+")" );
 		ok( count == 1, "handler was triggered");

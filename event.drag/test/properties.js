@@ -26,17 +26,17 @@ $.each(["init","start","","end"],function( i, type ){
 				ok( dd.drag == $div[0], "drag: [drag target]" );
 				ok( dd.proxy == $div[0], "proxy: [drag target]" );
 				
-				equals( dd.startX, sx + mx, "startX" );
-				equals( dd.startY, sy + my, "startY" );
+				equal( dd.startX, sx + mx, "startX" );
+				equal( dd.startY, sy + my, "startY" );
 				
-				equals( dd.deltaX, i ? dx : 0, "deltaX" );
-				equals( dd.deltaY, i ? dy : 0, "deltaY" );
+				equal( dd.deltaX, i ? dx : 0, "deltaX" );
+				equal( dd.deltaY, i ? dy : 0, "deltaY" );
 				
-				equals( dd.originalX, sx, "originalX" );
-				equals( dd.originalY, sy, "originalY" );
+				equal( dd.originalX, sx, "originalX" );
+				equal( dd.originalY, sy, "originalY" );
 				
-				equals( dd.offsetX, i ? sx + dx : sx, "offsetX" );
-				equals( dd.offsetY, i ? sy + dy : sy, "offsetY" );
+				equal( dd.offsetX, i ? sx + dx : sx, "offsetX" );
+				equal( dd.offsetY, i ? sy + dy : sy, "offsetY" );
 				
 				ok( dd.drop.constructor == Array && !dd.drop.length, "drop: []" );
 				ok( dd.available.constructor == Array && !dd.available.length, "available: []" );
