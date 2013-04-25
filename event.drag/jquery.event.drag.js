@@ -1,10 +1,13 @@
 /*! 
- * jquery.event.drag - v 2.2.1
+ * jquery.event.drag - v2.2.2
  * Copyright (c) 2010 Three Dub Media - http://threedubmedia.com
  * Open Source MIT License - http://threedubmedia.com/code/license
+ *
+ * https://github.com/richardscarrott/jquery.threedubmedia
  */
-// Created: 2008-06-04 
+// Created: 2008-06-04
 // Updated: 2012-05-21
+// Updated: 2013-02-25 (richardscarrott)
 // REQUIRES: jquery 1.8
 
 ;(function( $ ){
@@ -38,7 +41,9 @@ drag = $special.drag = {
 		handle: null, // selector to match handle target elements
 		relative: false, // true to use "position", false to use "offset"
 		drop: true, // false to suppress drop events, true or selector to allow
-		click: false // false to suppress click events after dragend (no proxy)
+		click: false, // false to suppress click events after dragend (no proxy)
+		axis: null // "x" or "y" to indicate which axis the drag event is interested in and consequently whether
+		// scrolling on touch devices will be prevented
 	},
 	
 	// the key name for stored drag data
@@ -193,7 +198,19 @@ drag = $special.drag = {
 			// mousemove, dragging
 			case 'MSPointerMove':
 			case 'touchmove':
-				event.preventDefault();
+				if (dd.axis === 'x') {
+					if (Math.abs(event.pageX - dd.pageX) >= Math.abs(event.pageY - dd.pageY)) {
+						event.preventDefault();
+					}
+				}
+				else if (dd.axis === 'y') {
+					if (Math.abs(event.pageX - dd.pageX) <= Math.abs(event.pageY - dd.pageY)) {
+						event.preventDefault();
+					}
+				}
+				else {
+					event.preventDefault();
+				}
 			case 'mousemove':
 				if ( dd.dragging ){
 					// trigger "drag"		
