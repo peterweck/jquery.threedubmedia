@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<link href="../base.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+<script src="../../event.drag/jquery.event.drag.js"></script>
+<script src="../../event.drop/jquery.event.drop.js"></script>
+<script src="../excanvas.min.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-98841-11']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<title>ThreeDubMedia &middot; jquery.event.drag</title>
+</head>
+<body>
+<script type="text/javascript">
+jQuery(function($){
+	var canvas = $('#draw')[0].getContext('2d');
+	canvas.strokeStyle = "#137";
+	canvas.lineCap = 'round';
+	canvas.lineWidth = 4;
+	canvas.beginPath();
+	$('#draw')
+		.drag("start",function( ev, dd ){
+			canvas.moveTo( 
+				ev.pageX - dd.originalX,
+				ev.pageY - dd.originalY
+			);
+		})
+		.drag(function( ev, dd ){	
+			canvas.lineTo(
+				ev.pageX - dd.originalX,
+				ev.pageY - dd.originalY
+			);
+			canvas.clearRect(0,0,680,300);
+			canvas.stroke(); 
+		});
+});
+</script>
+
+<h1>Draw Drag Demo</h1>
+<p>Click and drag inside the box to draw a line.</p>
+<canvas id="draw" width="680" height="300"></canvas>  
+
+<style type="text/css">
+#draw {
+	border: 1px solid #AAA;
+	background: #EEE;
+	}
+</style></body>
+</html>

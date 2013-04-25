@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<link href="../base.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+<script src="../../event.drag/jquery.event.drag.js"></script>
+<script src="../../event.drop/jquery.event.drop.js"></script>
+<script src="../excanvas.min.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-98841-11']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<title>ThreeDubMedia &middot; jquery.event.drop</title>
+</head>
+<body>
+<script type="text/javascript">
+jQuery(function($){
+	$('.drag')
+		.drag("start",function( ev, dd ){
+			$( this ).css({
+				opacity: .75,
+				cursor: 'crosshair'
+			});
+		})
+		.drag(function( ev, dd ){
+			$( this ).css({
+				top: dd.offsetY,
+				left: dd.offsetX
+			});
+		})
+		.drag("end",function( ev, dd ){
+			$( this ).css({
+				opacity: '',
+				cursor: ''
+			});
+		});
+	$('.drop td')
+		.drop("start",function(){
+			$( this ).addClass("active");
+		})
+		.drop(function( ev, dd ){
+			$( this ).toggleClass("dropped");
+		})
+		.drop("end",function(){
+			$( this ).removeClass("active");
+		});
+	$.drop({ mode:true });
+});
+</script>
+
+<h1>Mouse Drop Demo</h1>
+<p>Drag the blue boxes into the dashed boxes, until the mouse cursor is inside.</p>
+<table class="drop" cellspacing="10">
+	<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td><td colspan="2">&nbsp;</td></tr>
+	<tr><td>&nbsp;</td><td rowspan="2">&nbsp;</td><td colspan="2" rowspan="2">&nbsp;</td></tr>
+	<tr><td>&nbsp;</td></tr>
+</table>
+<div class="drag size1" style="left:20px;"></div>
+<div class="drag size2" style="left:100px;"></div>
+<div class="drag size3" style="left:180px;"></div>
+
+<style type="text/css">
+.drag {
+	position: absolute;
+	border: 1px solid #89B;
+	background: #BCE;
+	height: 58px;
+	width: 58px;
+	cursor: move;
+	top: 110px;
+	line-height: 58px;
+	text-align: center;
+	}
+.size2 {
+	height: 118px;
+	line-height: 118px;
+	}
+.size3 {
+	height: 178px;
+	line-height: 178px;
+	}
+.drop {
+	float: right;
+	table-layout: fixed;
+	}
+.drop td {
+	width: 95px;
+	height: 65px;
+	padding: 0;
+	border: 1px dashed #888;
+	background: #EEE;
+	font-size: 10px;
+	line-height: 12px;
+	overflow: hidden;
+	text-align: center;
+	}
+td.dropped {
+	background-color: #EBC;
+	border-color: #B89;
+	}	
+td.active {  
+	background-color: #CEB;
+	border-color: #9B8;
+	}
+</style></body>
+</html>

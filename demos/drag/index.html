@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<link href="../base.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+<script src="../../event.drag/jquery.event.drag.js"></script>
+<script src="../../event.drop/jquery.event.drop.js"></script>
+<script src="../excanvas.min.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-98841-11']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<title>ThreeDubMedia &middot; jquery.event.drag</title>
+</head>
+<body>
+<h1>jquery.event.drag / Demos</h1><p>
+	The following examples are intended to show how the drag special events can be 
+	configured to acheive a wide range of features for any drag interaction. I have 
+	simplified each demo as much as possible, to really highlight the core of each 
+	feature. If you have any problems, or want to suggest a new feature, or a new 
+	demo, please contact me via the 
+	<a href="http://groups.google.com/group/threedubmedia" class="ext">ThreeDubMedia Google Group</a>.
+</p>
+<ul>
+	<li>
+		<a href="basic.html" class="demo">Basic</a>
+		<br />
+		One of the simplest ways to create a drag interaction, with the "drag" method.
+	</li> 
+	<li>
+		<a href="relative.html" class="demo">Relative</a>
+		<br />
+		A simple drag operation using the relative option.
+	</li>
+	<li>
+		<a href="axis.html" class="demo">Axis</a>
+		<br />
+		A way to restrict movement in one dimension.
+	</li>
+	<li>
+		<a href="grid.html" class="demo">Grid</a>
+		<br />
+		A technique for restricting movement to a grid.
+	</li>
+	<li>
+		<a href="contain.html" class="demo">Contain</a>
+		<br />
+		A technique for restricting movement to a container.
+	</li>
+	<li>
+		<a href="circular.html" class="demo">Circular</a>
+		<br />
+		Using trigonometry to restrict movement to a circular path.
+	</li>
+	<li>
+		<a href="handle.html" class="demo">Handle</a>
+		<br />
+		Using the "bind" data parameter and the "handle" option.
+	</li>
+	<li>
+		<a href="active.html" class="demo">Active</a>
+		<br />
+		Using the "dragstart" and "dragend" events to toggle an "active" drag state.
+	</li>
+	<li>
+		<a href="proxy.html" class="demo">Proxy</a>
+		<br />
+		Using the "dragstart" handler to return a proxy element.
+	</li>
+	<li>
+		<a href="zindex.html" class="demo">Z-index</a>
+		<br />
+		Using the "dragstart" handler to ensure the dragged element is on top.
+	</li>
+	<li>
+		<a href="revert.html" class="demo">Revert</a>
+		<br />
+		Using the "startX" and "startY" properties to restore starting position.
+	</li>
+	<li>
+		<a href="multi.html" class="demo">Multi</a>
+		<br />
+		Using the "draginit" handler to return multiple elements.
+	</li>
+	<li>
+		<a href="offset.html" class="demo">Offset</a>
+		<br />
+		Setting a fixed element offset for dragged elements.
+	</li>
+	<li>
+		<a href="live.html" class="demo">Live</a>
+		<br />
+		Using "live" event delegation with "drag" events.
+	</li>
+	<li>
+		<a href="which.html" class="demo">Which</a>
+		<br />
+		Using the "which" option to target a specific mouse button.
+	</li>
+	<li>
+		<a href="click.html" class="demo">Click</a>
+		<br />
+		Using the "click" option to allow a click to propagate after dragging.
+	</li>
+	<li>
+		<a href="not.html" class="demo">Not</a>
+		<br />
+		Using the "not" option to prevent dragging by selector expression.
+	</li>
+	<li>
+		<a href="distance.html" class="demo">Distance</a>
+		<br />
+		Using the "distance" option to prevent dragging until a pixel threshold has been crossed.
+	</li>
+	<li>
+		<a href="resize.html" class="demo">Resize</a>
+		<br />
+		Using the "deltaX" and "deltaY" properties to resize an element.
+	</li>
+	<li>
+		<a href="resize2.html" class="demo">Resize2</a>
+		<br />
+		A complex example showing resize in 8 directions with multiple elements.
+	</li>
+	<li>
+		<a href="draw.html" class="demo">Draw</a>
+		<br />
+		Using the drag events to manipulate a canvas element.
+	</li>
+</ul></body>
+</html>
