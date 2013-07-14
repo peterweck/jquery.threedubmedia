@@ -9,7 +9,7 @@
         "url": "git@github.com:dextermilo/jquery.threedubmedia.git"
     },
     "dependencies": {
-        "jquery": ">=1.7.2",
+        "jquery": ">=1.7.2"
     },
     "main": [
         "event.drag/jquery.event.drag.js",
