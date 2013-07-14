@@ -1,9 +1,13 @@
 {
     "name": "jquery.threedubmedia",
-    "version": "*",
-    "title": "jQuery Drag-Drop",
-    "description": "Drag and Drop",
+    "version": "2.2",
+    "title": "jQuery Drag & Drop",
+    "description": "A jquery special event plugin that makes the task of adding complex drag interactions, to any element, simple and powerful.",
     "homepage": "http://threedubmedia.com/code/event/",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:dextermilo/jquery.threedubmedia.git"
+    },
     "dependencies": {
         "jquery": ">1.7"
     },
