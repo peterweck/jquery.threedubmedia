@@ -9,6 +9,20 @@
 // Updated: 2012-05-21
 // Updated: 2013-02-25 (richardscarrott)
 // REQUIRES: jquery 1.8
+(function (root, factory) {
+    if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like enviroments that support module.exports,
+        // like Node.
+        module.exports = factory(require('jquery'));
+    } else if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else {
+        // Browser globals
+        root.returnExports = factory(root.jQuery);
+    }
+}(this, function (jQuery) {
 
 ;(function( $ ){
 
@@ -188,7 +202,7 @@ drag = $special.drag = {
 			case !dd.dragging && 'MSPointerMove': 
 				event.preventDefault();
 			case !dd.dragging && 'mousemove':
-				//  drag tolerance, x² + y² = distance²
+				//  drag tolerance, xÂ² + yÂ² = distanceÂ²
 				if ( Math.pow(  event.pageX-dd.pageX, 2 ) + Math.pow(  event.pageY-dd.pageY, 2 ) < Math.pow( dd.distance, 2 ) ) 
 					break; // distance tolerance not reached
 				event.target = dd.target; // force target from "mousedown" event (fix distance issue)
@@ -444,3 +458,5 @@ $event.fixHooks.touchcancel = {
 $special.draginit = $special.dragstart = $special.dragend = drag;
 
 })( jQuery );
+
+}));
