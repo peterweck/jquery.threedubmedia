@@ -13,6 +13,13 @@
 <script type="text/javascript">
 jQuery(function($){
 	var num = 1;
+	var drag_handler = function( ev, dd ){
+		$( this ).css({
+			top: dd.offsetY,
+			left: dd.offsetX
+		});
+	};
+
 	$('#add').click(function(){
 		$('<div class="drag"/>')
 			.text( num++ )
@@ -21,20 +28,18 @@ jQuery(function($){
 				top: Math.random() * ( $( window ).height() - 100 ) + 20, 
 				left: Math.random() * ( $( window ).width() - 100 ) + 20 
 			});
-	});
-	$('.drag').live("drag",function( ev, dd ){
-		$( this ).css({
-			top: dd.offsetY,
-			left: dd.offsetX
-		});
+		// make sure we UNregister any previously registered on(event) handler or we will get drag_handler invoked multiple times for previously added boxes:
+		$('.drag')
+			.off("drag", drag_handler)
+			.on("drag", drag_handler);
 	});
 });
 </script>
 
-<h1>Live Drag Demo</h1>
+<h1><a href="http://api.jquery.com/live/">Live</a> Drag Demo</h1>
 <p>
 	<input type="button" id="add" value="Add a Box" />
-	to the screen, drag it around, thanks to "live" delegation.
+	to the screen, drag it around, thanks to "<a href="http://api.jquery.com/live/">live</a>" delegation.
 </p>
 
 <style type="text/css">

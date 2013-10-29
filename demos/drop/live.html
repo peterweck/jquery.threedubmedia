@@ -13,6 +13,15 @@
 <script type="text/javascript">
 jQuery(function($){
 	var num = 1;
+	var dropstart_handler = function(){
+		$( this ).addClass("active");								
+	};
+	var drop_handler = function(){
+		$( this ).toggleClass("dropped");								
+	};
+	var dropend_handler = function(){
+		$( this ).removeClass("active");								
+	};
 	$('#add').click(function(){
 		$('<div class="drop" />')
 			.text( num++ )
@@ -21,6 +30,14 @@ jQuery(function($){
 				top: Math.random() * ( $( window ).height() - 100 ) + 20, 
 				left: Math.random() * ( $( window ).width() - 100 ) + 20
 			});
+		// make sure we UNregister any previously registered on(event) handler or we will get drag_handler invoked multiple times for previously added boxes:
+		$('.drop')
+			.off("dropstart", dropstart_handler)
+			.off("drop", drop_handler)
+			.off("dropend", dropend_handler)
+			.on("dropstart", dropstart_handler)
+			.on("drop", drop_handler)
+			.on("dropend", dropend_handler);
 	});
 	$('.drag')
 		.drag("start",function(){
@@ -32,23 +49,13 @@ jQuery(function($){
 				left: dd.offsetX
 			});
 		});
-	$('.drop')
-		.live("dropstart",function(){
-			$( this ).addClass("active");								
-		})
-		.live("drop",function(){
-			$( this ).toggleClass("dropped");								
-		})
-		.live("dropend",function(){
-			$( this ).removeClass("active");								
-		});
 });
 </script>
 
-<h1>Live Drop Demo</h1>
+<h1><a href="http://api.jquery.com/live/">Live</a> Drop Demo</h1>
 <p>
 	<input type="button" id="add" value="Add a Box" />
-	to the screen, drag the blue boxes into it, thanks to "live" delegation.
+	to the screen, drag the blue boxes into it, thanks to "<a href="http://api.jquery.com/live/">live</a>" delegation.
 </p>
 <div class="drag" style="left:20px;"></div>
 <div class="drag" style="left:100px;"></div>
