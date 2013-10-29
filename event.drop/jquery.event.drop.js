@@ -19,7 +19,7 @@ $.fn.drop = function( str, arg, opts ){
 	fn = $.isFunction( str ) ? str : $.isFunction( arg ) ? arg : null;
 	// fix the event type
 	if ( type.indexOf("drop") !== 0 ) 
-		type = "drop"+ type;
+		type = "drop" + type;
 	// were options passed
 	opts = ( str == fn ? arg : opts ) || {};
 	// trigger or bind event handler
@@ -125,14 +125,18 @@ drop = $.event.special.drop = {
 				if ( typeof dd.drop == "string" )
 					$targets = $targets.filter( dd.drop );
 				// reset drop data winner properties
-				$targets.each(function(){
+				var droppable_targets = [];
+				$targets.each(function( i ){
 					var data = $.data( this, drop.datakey );
-					data.active = [];
-					data.anyactive = 0;
-					data.winner = 0;
+					if (data) {
+						data.active = [];
+						data.anyactive = 0;
+						data.winner = 0;
+						droppable_targets.push(this);
+					}
 				});
 				// set available target elements
-				dd.droppable = $targets;
+				dd.droppable = droppable_targets;
 				// activate drop targets for the initial element being dragged
 				$special.drag.hijack( event, "dropinit", dd ); 
 				break;
