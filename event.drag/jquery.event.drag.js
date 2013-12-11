@@ -7,6 +7,7 @@
  */
 // Created: 2008-06-04
 // Updated: 2012-05-21
+// Updated: 2013-01-08
 // Updated: 2013-02-25 (richardscarrott)
 // REQUIRES: jquery 1.8
 (function (root, factory) {
@@ -14,17 +15,15 @@
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like enviroments that support module.exports,
         // like Node.
-        module.exports = factory(require('jquery'));
+        factory(require('jquery'));
     } else if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define(['jquery'], factory);
     } else {
         // Browser globals
-        root.returnExports = factory(root.jQuery);
+        factory(root.jQuery);
     }
-}(this, function (jQuery) {
-
-;(function( $ ){
+}(this, function ($) {
 
 // add the jquery instance method
 $.fn.drag = function( str, arg, opts ){
@@ -406,15 +405,23 @@ drag.callback.prototype = {
 	}
 };
 
-// patch $.event.$dispatch to allow suppressing clicks
-var $dispatch = $event.dispatch;
-$event.dispatch = function( event ){
-	if ( event && event.type && $.data( this, "suppress."+ event.type ) - new Date().getTime() > 0 ){
-		$.removeData( this, "suppress."+ event.type );
-		return;
-	}
-	return $dispatch.apply( this, arguments );
+if ( !$special.click ) { $special.click = {}; }
+
+var $clickPreDispatch = $special.click.preDispatch;
+
+$special.click.preDispatch = function( event ) {
+
+  // Hook to allow supression of clicks after a drag.
+  if ( $.data( this, "suppress.click" ) - new Date().getTime() > 0 ) {
+    $.removeData( this, "suppress.click" );
+    return false;
+  }
+
+  if ( $clickPreDispatch ) {
+    return $clickPreDispatch.apply( this, arguments );
+  }
 };
+
 
 // event fix hooks for MS pointer (IE10) events...
 var msPointerHooks =
@@ -456,7 +463,5 @@ $event.fixHooks.touchcancel = {
 
 // share the same special event configuration with related events...
 $special.draginit = $special.dragstart = $special.dragend = drag;
-
-})( jQuery );
 
 }));
