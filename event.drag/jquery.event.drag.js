@@ -294,8 +294,9 @@ drag = $special.drag = {
 			$( elem || ia[ mode ] || dd.droppable ).each(function( p, subject ){
 				// identify drag or drop targets individually
 				callback.target = subject;
-				// force propagtion of the custom event
+				// force propagation of the custom event
 				event.isPropagationStopped = function(){ return false; };
+				event.isImmediatePropagationStopped = function(){ return false; };
 				// handle the event	
 				result = subject ? $event.dispatch.call( subject, event, callback ) : null;
 				// stop the drag interaction for this element
