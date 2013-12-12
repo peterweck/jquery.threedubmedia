@@ -43,7 +43,7 @@ $.drop = function( opts ){
 var $event = $.event, 
 $special = $event.special,
 // configure the drop special event
-drop = $.event.special.drop = {
+drop = $special.drop = {
 
 	// these are the default settings
 	multi: 1, // allow multiple drop winners per dragged element
