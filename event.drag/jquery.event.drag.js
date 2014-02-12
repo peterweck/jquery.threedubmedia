@@ -288,57 +288,58 @@ drag = $special.drag = {
 		// initialize the results
 		dd.results = [];
 		// handle each interacted element
-		do if ( ia = dd.interactions[ i ] ){
-			// validate the interaction
-			if ( type !== "dragend" && ia.cancelled )
-				continue;
-			// set the dragdrop properties on the event object
-			callback = drag.properties( event, dd, ia );
-			// prepare for more results
-			ia.results = [];
-			// handle each element
-			$( elem || ia[ mode ] || dd.droppable ).each(function( p, subject ){
-				// identify drag or drop targets individually
-				callback.target = subject;
-				// force propagation of the custom event
-				event.isPropagationStopped = function(){ return false; };
-				event.isImmediatePropagationStopped = function(){ return false; };
-				// handle the event
-				result = subject ? $event.dispatch.call( subject, event, callback ) : null;
-				// stop the drag interaction for this element
-				if ( result === false ){
-					if ( mode == "drag" ){
-						ia.cancelled = true;
-						dd.propagates -= 1;
+		do {
+			if ( ia = dd.interactions[ i ] ){
+				// validate the interaction
+				if ( type !== "dragend" && ia.cancelled )
+					continue;
+				// set the dragdrop properties on the event object
+				callback = drag.properties( event, dd, ia );
+				// prepare for more results
+				ia.results = [];
+				// handle each element
+				$( elem || ia[ mode ] || dd.droppable ).each(function( p, subject ){
+					// identify drag or drop targets individually
+					callback.target = subject;
+					// force propagation of the custom event
+					event.isPropagationStopped = function(){ return false; };
+					event.isImmediatePropagationStopped = function(){ return false; };
+					// handle the event
+					result = subject ? $event.dispatch.call( subject, event, callback ) : null;
+					// stop the drag interaction for this element
+					if ( result === false ){
+						if ( mode == "drag" ){
+							ia.cancelled = true;
+							dd.propagates -= 1;
+						}
+						if ( type == "drop" ){
+							ia[ mode ][p] = null;
+						}
 					}
-					if ( type == "drop" ){
-						ia[ mode ][p] = null;
-					}
-				}
-				// assign any dropinit elements
-				else if ( type == "dropinit" )
-					ia.droppable.push( drag.element( result ) || subject );
-				// accept a returned proxy element
-				if ( type == "dragstart" )
-					ia.proxy = $( drag.element( result ) || ia.drag )[0];
-				// remember this result
-				ia.results.push( result );
-				// forget the event result, for recycling
-				delete event.result;
-				// break on cancelled handler
-				if ( type !== "dropinit" )
-					return result;
-			});
-			// flatten the results
-			dd.results[ i ] = drag.flatten( ia.results );
-			// accept a set of valid drop targets
-			if ( type == "dropinit" )
-				ia.droppable = drag.flatten( ia.droppable );
-			// locate drop targets
-			if ( type == "dragstart" && !ia.cancelled )
-				callback.update();
-		}
-		while ( ++i < len )
+					// assign any dropinit elements
+					else if ( type == "dropinit" )
+						ia.droppable.push( drag.element( result ) || subject );
+					// accept a returned proxy element
+					if ( type == "dragstart" )
+						ia.proxy = $( drag.element( result ) || ia.drag )[0];
+					// remember this result
+					ia.results.push( result );
+					// forget the event result, for recycling
+					delete event.result;
+					// break on cancelled handler
+					if ( type !== "dropinit" )
+						return result;
+				});
+				// flatten the results
+				dd.results[ i ] = drag.flatten( ia.results );
+				// accept a set of valid drop targets
+				if ( type == "dropinit" )
+					ia.droppable = drag.flatten( ia.droppable );
+				// locate drop targets
+				if ( type == "dragstart" && !ia.cancelled )
+					callback.update();
+			}
+		} while ( ++i < len );
 		// restore the original event & type
 		event.type = orig.type;
 		event.originalEvent = orig.event;
