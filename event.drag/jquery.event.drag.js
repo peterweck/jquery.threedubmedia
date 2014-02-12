@@ -144,6 +144,7 @@ drag = $special.drag = {
 		dd.target = event.target;
 		dd.pageX = event.pageX;
 		dd.pageY = event.pageY;
+		dd.startEvent = event;
 		dd.dragging = null;
 		// handle draginit event...
 		results = drag.hijack( event, "draginit", dd );
@@ -200,12 +201,17 @@ drag = $special.drag = {
 			case !dd.dragging && 'touchmove':
 			case !dd.dragging && 'MSPointerMove':
 				event.preventDefault();
+				dd.startEvent.preventDefault();
 			case !dd.dragging && 'mousemove':
 				//  drag tolerance, x² + y² = distance²
-				if ( Math.pow(  event.pageX-dd.pageX, 2 ) + Math.pow(  event.pageY-dd.pageY, 2 ) < Math.pow( dd.distance, 2 ) )
+				if ( Math.pow( event.pageX-dd.pageX, 2 ) + Math.pow(  event.pageY-dd.pageY, 2 ) < Math.pow( dd.distance, 2 ) )
 					break; // distance tolerance not reached
 				event.target = dd.target; // force target from "mousedown" event (fix distance issue)
-				drag.hijack( event, "dragstart", dd ); // trigger "dragstart"
+				// make sure dragstart event carries the coordinates, etc. from the original mousedown/touchstart that started the drag:
+				var start_event = new jQuery.Event( dd.startEvent.type, dd.startEvent );
+				// forget the event result from when it was used in draginit, for recycling
+				delete start_event.result;
+				drag.hijack( start_event, "dragstart", dd ); // trigger "dragstart"
 				if ( dd.propagates ) // "dragstart" not rejected
 					dd.dragging = true; // activate interaction
 			// mousemove, dragging
