@@ -21,7 +21,7 @@ jQuery(function($){
 				return $('.selected');					  
 		})
 		.drag("start",function( ev, dd ){
-			dd.attr = $( ev.target ).attr("className");
+			dd.attr = $( ev.target ).attr("class");
 			dd.width = $( this ).width();
 			dd.height = $( this ).height();
 		})
