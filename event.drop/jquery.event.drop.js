@@ -235,7 +235,7 @@ drop = $special.drop = {
 			arr = []; 
 			len = ia.droppable.length;
 			// determine the proxy location, if needed
-			if ( tolerance )
+			if ( tolerance && ia.proxy )
 				drg = drop.locate( ia.proxy ); 
 			// reset the loop
 			i = 0;

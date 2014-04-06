@@ -33,7 +33,7 @@ $.fn.drag = function( str, arg, opts ){
 	fn = $.isFunction( str ) ? str : $.isFunction( arg ) ? arg : null;
 	// fix the event type
 	if ( type.indexOf("drag") !== 0 )
-		type = "drag"+ type;
+		type = "drag" + type;
 	// were options passed
 	opts = ( str == fn ? arg : opts ) || {};
 	// trigger or bind event handler
