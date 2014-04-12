@@ -165,8 +165,22 @@ drop = $special.drop = {
 		
 	// returns the location positions of an element
 	locate: function( elem, index ){ 
-		var data = $.data( elem, drop.datakey ),
-		location = $.extend({elem:elem}, elem.getBoundingClientRect());
+		var data = $.data( elem, drop.datakey );
+		var rect;
+		if (typeof elem.getBoundingClientRect === 'function') {
+			rect = elem.getBoundingClientRect();
+		} else {
+			// under particular circumstances, the `elem` MAY be #document, which does not carry the getBoundingClientRect() API: 
+			var $elem = $(elem);
+			var offs = $elem.offset();
+			rect = $.extend(offs, {
+				width: $elem.width(),
+				height: $elem.height()
+			});
+			rect.right = rect.left + rect.width;
+			rect.bottom = rect.top + rect.height;	
+		}
+		var location = $.extend({elem:elem}, rect);
 		if (!location.width) {
 			location.width = location.right - location.left;
 			location.height = location.bottom - location.top;
