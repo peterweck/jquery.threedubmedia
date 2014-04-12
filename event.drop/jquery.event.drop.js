@@ -19,7 +19,7 @@ $.fn.drop = function( str, arg, opts ){
 	fn = $.isFunction( str ) ? str : $.isFunction( arg ) ? arg : null;
 	// fix the event type
 	if ( type.indexOf("drop") !== 0 ) 
-		type = "drop"+ type;
+		type = "drop" + type;
 	// were options passed
 	opts = ( str == fn ? arg : opts ) || {};
 	// trigger or bind event handler
@@ -43,7 +43,7 @@ $.drop = function( opts ){
 var $event = $.event, 
 $special = $event.special,
 // configure the drop special event
-drop = $.event.special.drop = {
+drop = $special.drop = {
 
 	// these are the default settings
 	multi: 1, // allow multiple drop winners per dragged element
@@ -125,14 +125,18 @@ drop = $.event.special.drop = {
 				if ( typeof dd.drop == "string" )
 					$targets = $targets.filter( dd.drop );
 				// reset drop data winner properties
-				$targets.each(function(){
+				var droppable_targets = [];
+				$targets.each(function( i ){
 					var data = $.data( this, drop.datakey );
-					data.active = [];
-					data.anyactive = 0;
-					data.winner = 0;
+					if (data) {
+						data.active = [];
+						data.anyactive = 0;
+						data.winner = 0;
+						droppable_targets.push(this);
+					}
 				});
 				// set available target elements
-				dd.droppable = $targets;
+				dd.droppable = droppable_targets;
 				// activate drop targets for the initial element being dragged
 				$special.drag.hijack( event, "dropinit", dd ); 
 				break;
@@ -161,20 +165,26 @@ drop = $.event.special.drop = {
 		
 	// returns the location positions of an element
 	locate: function( elem, index ){ 
-		var data = $.data( elem, drop.datakey ),
-		$elem = $( elem ), 
-		posi = $elem.offset() || {}, 
-		height = $elem.outerHeight(), 
-		width = $elem.outerWidth(),
-		location = { 
-			elem: elem, 
-			width: width, 
-			height: height,
-			top: posi.top, 
-			left: posi.left, 
-			right: posi.left + width, 
-			bottom: posi.top + height
-		};
+		var data = $.data( elem, drop.datakey );
+		var rect;
+		if (typeof elem.getBoundingClientRect === 'function') {
+			rect = elem.getBoundingClientRect();
+		} else {
+			// under particular circumstances, the `elem` MAY be #document, which does not carry the getBoundingClientRect() API: 
+			var $elem = $(elem);
+			var offs = $elem.offset();
+			rect = $.extend(offs, {
+				width: $elem.width(),
+				height: $elem.height()
+			});
+			rect.right = rect.left + rect.width;
+			rect.bottom = rect.top + rect.height;	
+		}
+		var location = $.extend({elem:elem}, rect);
+		if (!location.width) {
+			location.width = location.right - location.left;
+			location.height = location.bottom - location.top;
+		}
 		// drag elements might not have dropdata
 		if ( data ){
 			data.location = location;
@@ -239,7 +249,7 @@ drop = $.event.special.drop = {
 			arr = []; 
 			len = ia.droppable.length;
 			// determine the proxy location, if needed
-			if ( tolerance )
+			if ( tolerance && ia.proxy )
 				drg = drop.locate( ia.proxy ); 
 			// reset the loop
 			i = 0;
