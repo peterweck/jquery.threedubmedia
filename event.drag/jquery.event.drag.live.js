@@ -1,22 +1,35 @@
 /*! 
- * jquery.event.drag.live - v 2.2.1
+ * jquery.event.drag.live - v 2.2.2
  * Copyright (c) 2010 Three Dub Media - http://threedubmedia.com
  * Open Source MIT License - http://threedubmedia.com/code/license
  */
 // Created: 2010-06-07
 // Updated: 2012-05-21
-// REQUIRES: jquery 1.8, event.drag 2.2.1
+// REQUIRES: jquery 1.8+, event.drag 2.2.2+
 
-;(function( $ ){
-	
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery', 'jquery.event.drag'], factory);
+    } else if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like environments that support module.exports,
+        // like Node.
+        factory(require('jquery'), require('jquery.event.drag'));
+    } else {
+        // Browser globals
+        factory(root.jQuery);
+    }
+}(this, function ($) {
+
 // local refs (increase compression)
-var $event = $.event,
+var $event = $.event;
 // ref the special event config
-drag = $event.special.drag,
+var drag = $event.special.drag;
 // old drag event add method
-origadd = drag.add,
+var origadd = drag.add;
 // old drag event teardown method
-origteardown = drag.teardown;
+var origteardown = drag.teardown;
 
 // allow events to bubble for delegation
 drag.noBubble = false;
@@ -83,5 +96,5 @@ drag.delegate = function( event ){
 		$event.remove( this, "."+ drag.livekey ); // cleanup delegation
 	});
 };
-	
-})( jQuery );
+
+}));		// UMD wrapper end

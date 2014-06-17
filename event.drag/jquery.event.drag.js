@@ -9,16 +9,17 @@
 // Updated: 2012-05-21
 // Updated: 2013-01-08
 // Updated: 2013-02-25 (richardscarrott)
-// REQUIRES: jquery 1.8
+// REQUIRES: jquery 1.8+
+
 (function (root, factory) {
-    if (typeof exports === 'object') {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like enviroments that support module.exports,
-        // like Node.
-        factory(require('jquery'));
-    } else if (typeof define === 'function' && define.amd) {
+    if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like environments that support module.exports,
+        // like Node.
+        factory(require('jquery'));
     } else {
         // Browser globals
         factory(root.jQuery);
@@ -28,9 +29,9 @@
 // add the jquery instance method
 $.fn.drag = function( str, arg, opts ){
 	// figure out the event type
-	var type = typeof str == "string" ? str : "",
+	var type = typeof str == "string" ? str : "";
 	// figure out the event handler...
-	fn = $.isFunction( str ) ? str : $.isFunction( arg ) ? arg : null;
+	var fn = $.isFunction( str ) ? str : $.isFunction( arg ) ? arg : null;
 	// fix the event type
 	if ( type.indexOf("drag") !== 0 )
 		type = "drag" + type;
@@ -41,10 +42,10 @@ $.fn.drag = function( str, arg, opts ){
 };
 
 // local refs (increase compression)
-var $event = $.event,
-$special = $event.special,
+var $event = $.event;
+var $special = $event.special;
 // configure the drag special event
-drag = $special.drag = {
+var drag = $special.drag = {
 
 	// these are the default settings
 	defaults: {
@@ -473,4 +474,4 @@ $event.fixHooks.touchcancel = {
 // share the same special event configuration with related events...
 $special.draginit = $special.dragstart = $special.dragend = drag;
 
-}));
+}));		// UMD wrapper end
