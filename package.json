@@ -5,12 +5,12 @@
   "main": "jquery.event.drag.live.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/devongovett/jquery.event.drag.git"
+    "url": "git://github.com/GerHobbelt/jquery.event.drag.git"
   },
   "author": "Devon Govett <devongovett@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/devongovett/jquery.threedubmedia/issues"
   },
-  "homepage": "https://github.com/devongovett/jquery.threedubmedia"
+  "homepage": "https://github.com/GerHobbelt/jquery.threedubmedia"
 }
