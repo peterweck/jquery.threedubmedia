@@ -263,7 +263,7 @@ drag = $special.drag = {
 				drag.textselect( true ); // enable text selection
 				// if suppressing click events...
 				if ( dd.click === false && dd.dragging )
-					$.data( dd.mousedown, "suppress.click", new Date().getTime() + 5 );
+					$.data( dd.mousedown, "suppress.click", event.timeStamp || (event.originalEvent && event.originalEvent.timeStamp) || (new Date().getTime() + 5) );
 				dd.dragging = drag.touched = drag.touchedMSPointer = false; // deactivate element
 				break;
 		}
@@ -420,7 +420,8 @@ var $clickPreDispatch = $special.click.preDispatch;
 $special.click.preDispatch = function( event ) {
 
   // Hook to allow supression of clicks after a drag.
-  if ( $.data( this, "suppress.click" ) - new Date().getTime() > 0 ) {
+  var evt_ts = (event.timeStamp || (event.originalEvent && event.originalEvent.timeStamp) || (new Date().getTime()) ) - 50;
+  if ( $.data( this, "suppress.click" ) >= evt_ts ) {
     $.removeData( this, "suppress.click" );
     return false;
   }
