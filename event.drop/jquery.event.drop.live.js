@@ -56,7 +56,7 @@ drop.delegate = function( event, dd ){
 	// local refs
 	var elems = [], $targets, 
 	// element event structure
-	events = $._data( this, "events" ) || {};
+	events = $.data( this, "events" ) || {};
 	// query live events
 	$.each( events || [], function( key, arr ){
 		// no event type matches
