@@ -1,5 +1,12 @@
-/*! 
- * jquery.event.drag - v 2.0.0 
+/*!
+ * Touch enabled jQuery.event.drag
+ * http://www.shamasis.net/projects/jquery-drag-touch/
+ * @license Open Source MIT
+ * @author Shamasis Bhattacharya <http://www.shamasis.net/>
+ * @release 2.0.1
+ *
+ * @original-license
+ * jquery.event.drag - v 2.0.0
  * Copyright (c) 2010 Three Dub Media - http://threedubmedia.com
  * Open Source MIT License - http://threedubmedia.com/code/license
  */
@@ -26,6 +33,23 @@ $.fn.drag = function( str, arg, opts ){
 
 // local refs (increase compression)
 var $event = $.event, 
+    hasTouch = 'ontouchstart' in document.documentElement,
+    initBindings = hasTouch ? 'touchstart' : 'mousedown',
+    dragBindings = hasTouch ? 'touchmove touchend' : 'mousemove mouseup',
+    touchEventXY = function (event, dd) {
+        if (!dd.touchXY || !event.originalEvent) {
+            return event;
+        }
+
+        // check whether mouse click or screentap
+        var touches = event.originalEvent.changedTouches ||
+        event.originalEvent.touches;
+        if (touches && touches.length) {
+            $.extend(event, touches[0]);
+        }
+        return event;
+    },
+
 $special = $event.special,
 // configure the drag special event 
 drag = $special.drag = {
@@ -37,8 +61,9 @@ drag = $special.drag = {
 		not: ':input', // selector to suppress dragging on target elements
 		handle: null, // selector to match handle target elements
 		relative: false, // true to use "position", false to use "offset"
-		drop: true, // false to suppress drop events, true or selector to allow
-		click: false // false to suppress click events after dragend (no proxy)
+        drop: false, // false to suppress drop events, true or selector to allow
+        click: false, // false to suppress click events after dragend (no proxy)
+        touchXY: true // Make touch XY match event XY
 	},
 	
 	// the key name for stored drag data
@@ -79,11 +104,13 @@ drag = $special.drag = {
 		if ( $.data( this, drag.datakey ) ) 
 			return;
 		// initialize the drag data with copied defaults
-		var data = $.extend({ related:0 }, drag.defaults );
+        var data = $.extend({
+            related:0
+        }, drag.defaults );
 		// store the interaction data
 		$.data( this, drag.datakey, data );
 		// bind the mousedown event, which starts drag interactions
-		$event.add( this, "mousedown", drag.init, data );
+        $event.add( this, initBindings, drag.init, data );
 		// prevent image dragging in IE...
 		if ( this.attachEvent ) 
 			this.attachEvent("ondragstart", drag.dontstart ); 
@@ -97,7 +124,7 @@ drag = $special.drag = {
 		// remove the stored data
 		$.removeData( this, drag.datakey );
 		// remove the mousedown event
-		$event.remove( this, "mousedown", drag.init );
+        $event.remove( this, initBindings, drag.init );
 		// remove the "live" delegation
 		$event.remove( this, "draginit", drag.delegate );
 		// enable text selection
@@ -110,10 +137,25 @@ drag = $special.drag = {
 	// initialize the interaction
 	init: function( event ){
 		// the drag/drop interaction data
-		var dd = event.data, results;
-		// check the which directive
-		if ( dd.which > 0 && event.which != dd.which ) 
-			return; 
+        var dd = event.data, results,
+        touches = event.originalEvent ? event.originalEvent.changedTouches ||
+        event.originalEvent.touches : [];
+
+        // check whether mouse click or screentap
+        if (touches && touches.length) {
+            // let the system handle multitouch operations like two finger scroll
+            // and pinching
+            if (touches.length > 1) {
+                return;
+            }
+        }
+        else {
+            // check the which directive
+            if ( dd.which > 0 && event.which != dd.which ) {
+                return;
+            }
+        }
+
 		// check for suppressed selector
 		if ( $( event.target ).is( dd.not ) ) 
 			return;
@@ -149,9 +191,11 @@ drag = $special.drag = {
 		// disable text selection
 		drag.textselect( false ); 
 		// bind additional events...
-		$event.add( document, "mousemove mouseup", drag.handler, dd );
+        $event.add( document, dragBindings, drag.handler, dd );
 		// helps prevent text selection
-		return false;
+        if (!hasTouch) {
+            return false;
+        }
 	},	
 	// returns an interaction object
 	interaction: function( elem, dd ){
@@ -159,25 +203,36 @@ drag = $special.drag = {
 			drag: elem, 
 			callback: new drag.callback(), 
 			droppable: [],
-			offset: $( elem )[ dd.relative ? "position" : "offset" ]() || { top:0, left:0 }
+            offset: $( elem )[ dd.relative ? "position" : "offset" ]() || {
+                top:0,
+                left:0
+            }
 		};
 	},
 	// handle drag-releatd DOM events
 	handler: function( event ){ 
 		// read the data before hijacking anything
 		var dd = event.data;
-		// handle various events
-		switch ( event.type ){
-			// mousemove, check distance, start dragging
-			case !dd.dragging && 'mousemove': 
-				//  drag tolerance, x² + y² = distance²
-				if ( Math.pow(  event.pageX-dd.pageX, 2 ) + Math.pow(  event.pageY-dd.pageY, 2 ) < Math.pow( dd.distance, 2 ) ) 
-					break; // distance tolerance not reached
-				event.target = dd.target; // force target from "mousedown" event (fix distance issue)
-				drag.hijack( event, "dragstart", dd ); // trigger "dragstart"
-				if ( dd.propagates ) // "dragstart" not rejected
-					dd.dragging = true; // activate interaction
-			// mousemove, dragging
+		// mousemove, check distance, start dragging
+        if (!dd.dragging && (event.type === 'mousemove' || event.type === 'touchmove')) {
+			//  drag tolerance, x² + y² = distance²
+			if ( Math.pow(  event.pageX-dd.pageX, 2 ) + Math.pow(  event.pageY-dd.pageY, 2 ) < Math.pow( dd.distance, 2 ) ) 
+                return; // distance tolerance not reached
+			event.target = dd.target; // force target from "mousedown" event (fix distance issue)
+			drag.hijack( event, "dragstart", dd ); // trigger "dragstart"
+			if ( dd.propagates ) // "dragstart" not rejected
+				dd.dragging = true; // activate interaction
+        }
+        // handle various events
+        switch ( event.type ){
+            // mousemove, dragging
+            case 'touchmove':
+                // prevent touch device screen scrolling.
+                if (dd.dragging) {
+                    event.preventDefault();
+                    touchEventXY(event, dd);
+                }
+
 			case 'mousemove': 
 				if ( dd.dragging ){
 					// trigger "drag"		
@@ -192,7 +247,8 @@ drag = $special.drag = {
 				}
 			// mouseup, stop dragging
 			case 'mouseup': 
-				$event.remove( document, "mousemove mouseup", drag.handler ); // remove page events
+            case 'touchend':
+                $event.remove( document, dragBindings, drag.handler ); // remove page events
 				if ( dd.dragging ){
 					if ( dd.drop !== false && $special.drop ) 
 						$special.drop.handler( event, dd ); // "drop"
@@ -249,7 +305,10 @@ drag = $special.drag = {
 		if ( !dd ) 
 			return;
 		// remember the original event and type
-		var orig = { event:event.originalEvent, type: event.type },
+        var orig = {
+            event:event.originalEvent,
+            type: event.type
+        },
 		// is the event drag related or drog related?
 		mode = type.indexOf("drop") ? "drag" : "drop",
 		// iteration vars
@@ -257,6 +316,8 @@ drag = $special.drag = {
 		len = !isNaN( x ) ? x : dd.interactions.length;
 		// modify the event type
 		event.type = type;
+        // copy the originalEvent as 'source event'
+        event.sourceEvent = orig.event;
 		// remove the original event
 		event.originalEvent = null;
 		// initialize the results
