@@ -54,7 +54,5 @@ $.each(["dropinit","dropstart","drop","dropend"],function( i, type ){
 		$(document).off( type, '.drop' );
 		$drag.remove();
 		$drop.remove();
-		
 	});
-
 });

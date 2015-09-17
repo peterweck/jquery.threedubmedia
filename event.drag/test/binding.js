@@ -1,16 +1,14 @@
 module("Event Binding");
 
-$.each(['draginit','dragstart','drag','dragend'],function( i, type ){
-		
-	test('"'+ type +'"',function(){
-		
+$.each(['draginit', 'dragstart', 'drag', 'dragend'], function ( i, type ) {
+	test('"' + type + '"', function () {
 		expect( 27 );
 
 		// make sure the event handler gets bound to the element
 		var $elem = $('<div />'), 
 		elem = $elem[0],
 		count = 0,
-		fn = function(){
+		fn = function () {
 			count += 1;
 		},
 		opts = {

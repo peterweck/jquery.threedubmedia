@@ -14,7 +14,7 @@
 					height: 100,
 					width: 100
 				})
-				.bind("dragend",{ drop:'.drop' },function( event, dd ){
+				.bind("dragend",{ drop:'.drop' }, function ( event, dd ) {
 					deepEqual( dd.drop, obj.dragend, "drop (dragend)" );
 				});
 			obj.$drop = $('<div class="drop"/><div class="extra"/>')
@@ -26,7 +26,7 @@
 					height: 100,
 					width: 100
 				})
-				.bind("dropinit dropstart drop dropend",function( event, dd ){
+				.bind("dropinit dropstart drop dropend", function ( event, dd ) {
 					obj[ event.type ] += 1;
 					return obj.returned[ event.type ];
 				});
@@ -58,7 +58,7 @@
 		}
 	};
 	
-	asyncTest('"dropinit" return false',function(){	
+	asyncTest('"dropinit" return false', function () {	
 		expect( 5 );
 		// test prep
 		obj.init();
@@ -75,7 +75,7 @@
 		obj.done();
 	});
 	
-	asyncTest('"dropstart" return false',function(){	
+	asyncTest('"dropstart" return false', function () {	
 		expect( 5 );
 		// test prep
 		obj.init();
@@ -93,7 +93,7 @@
 	});
 
 	
-	asyncTest('"drop" return false',function(){	
+	asyncTest('"drop" return false', function () {	
 		expect( 5 );
 		// test prep
 		obj.init();// test DROP FALSE
@@ -110,7 +110,7 @@
 		obj.done();
 	});
 	
-	asyncTest('"dropinit" return elements',function(){	
+	asyncTest('"dropinit" return elements', function () {	
 		expect( 5 );
 		// test prep
 		obj.init();

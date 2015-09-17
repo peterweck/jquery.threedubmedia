@@ -6,13 +6,12 @@ if ( !document.createEvent ){
 	});
 }
 else {
-	
 	// test each of the following events
 	$.each([
-		"touchstart","touchmove","touchend"
-	],function( i, type ){
+		"touchstart", "touchmove", "touchend"
+	], function ( i, type ) {
 		// test each event type
-		test( '"'+ type +'"', function(){
+		test( '"' + type + '"', function () {
 			expect( 33 );
 			
 			// custom event properties
@@ -27,8 +26,7 @@ else {
 			// new test element
 			$div = $('<div/>').appendTo( document.body );
 			// test the document too for bubbling
-			$div.add( document ).bind( type, function( ev ){
-				
+			$div.add( document ).bind( type, function ( ev ) {
 				equal( ev.currentTarget, this, "event.currentTarget");
 				equal( ev.target, $div[0], "event.target" );
 				equal( ev.type, type, "event.type" );
@@ -57,5 +55,4 @@ else {
 			$div.remove();
 		});
 	});
-
 }

@@ -23,13 +23,13 @@
 }(this, function ($) {
 
   // local refs (increase compression)
-var $event = $.event;
+  var $event = $.event;
   // ref the special event config
-var drag = $event.special.drag;
+  var drag = $event.special.drag;
   // old drag event add method
-var origadd = drag.add;
-// old drag event teardown method
-var origteardown = drag.teardown;
+  var origadd = drag.add;
+  // old drag event teardown method
+  var origteardown = drag.teardown;
 
   // allow events to bubble for delegation
   drag.noBubble = false;
@@ -38,67 +38,66 @@ var origteardown = drag.teardown;
   drag.livekey = "livedrag";
 
   // new drop event add method
-drag.add = function( obj ){ 
-  	// call the old method
-  	origadd.apply( this, arguments );
-  	// read the data
-  	var data = $.data( this, drag.datakey );
-  	// bind the live "draginit" delegator
-	if ( !data.live && obj.selector ){
-  		data.live = true;
-		$event.add( this, "draginit."+ drag.livekey, drag.delegate );
-  	}
+  drag.add = function ( obj ) {
+    // call the old method
+    origadd.apply( this, arguments );
+    // read the data
+    var data = $.data( this, drag.datakey );
+    // bind the live "draginit" delegator
+    if ( !data.live && obj.selector ) {
+      data.live = true;
+      $event.add( this, "draginit." + drag.livekey, drag.delegate );
+    }
   };
 
   // new drop event teardown method
-drag.teardown = function(){ 
-  	// call the old method
-  	origteardown.apply( this, arguments );
-  	// read the data
-  	var data = $.data( this, drag.datakey ) || {};
-  	// bind the live "draginit" delegator
-	if ( data.live ){
-  		// remove the "live" delegation
-		$event.remove( this, "draginit."+ drag.livekey, drag.delegate );
-  		data.live = false;
-  	}
+  drag.teardown = function () {
+    // call the old method
+    origteardown.apply( this, arguments );
+    // read the data
+    var data = $.data( this, drag.datakey ) || {};
+    // remove the live "draginit" delegator
+    if ( data.live ) {
+      // remove the "live" delegation
+      $event.remove( this, "draginit." + drag.livekey, drag.delegate );
+      data.live = false;
+    }
   };
 
   // identify potential delegate elements
-drag.delegate = function( event ){
-  	// local refs
-  	var elems = [], target,
-  	// element event structure
-  	events = $._data( this, "events" ) || {};
-  	// query live events
-	$.each( events || [], function( key, arr ){
-  		// no event type matches
-		if ( key.indexOf("drag") !== 0 ) {
-  			return;
-		}
-		$.each( arr || [], function( i, obj ){
-  			// locate the element to delegate
-  			target = $( event.target ).closest( obj.selector )[0];
-  			// no element found
-			if ( !target ) {
-  				return;
-			}
-  			// add an event handler
-			$event.add( target, obj.origType+'.'+drag.livekey, obj.origHandler || obj.handler, obj.data );
-  			// remember new elements
-			if ( $.inArray( target, elems ) < 0 ) {
-  				elems.push( target );
-			}
-  		});
-  	});
-  	// if there are no elements, break
-	if ( !elems.length ) {
-  		return false;
-	}
-  	// return the matched results, and clenup when complete
-	return $( elems ).bind("dragend."+ drag.livekey, function(){
-		$event.remove( this, "."+ drag.livekey ); // cleanup delegation
-  	});
+  drag.delegate = function ( event ) {
+    // local refs
+    var elems = [], target,
+    // element event structure
+    events = $._data( this, "events" ) || {};
+    // query live events
+    $.each( events || [], function ( key, arr ) {
+      // no event type matches
+      if ( key.indexOf("drag") !== 0 ) {
+        return;
+      }
+      $.each( arr || [], function ( i, obj ) {
+        // locate the element to delegate
+        target = $( event.target ).closest( obj.selector )[0];
+        // no element found
+        if ( !target ) {
+          return;
+        }
+        // add an event handler
+        $event.add( target, obj.origType + '.' + drag.livekey, obj.origHandler || obj.handler, obj.data );
+        // remember new elements
+        if ( $.inArray( target, elems ) < 0 ) {
+          elems.push( target );
+        }
+      });
+    });
+    // if there are no elements, break
+    if ( !elems.length ) {
+      return false;
+    }
+    // return the matched results, and cleanup when complete
+    return $( elems ).bind("dragend." + drag.livekey, function () {
+      $event.remove( this, "." + drag.livekey ); // cleanup delegation
+    });
   };
-
-}));		// UMD wrapper end
+}));    // UMD wrapper end

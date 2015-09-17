@@ -1,13 +1,11 @@
 module("Requirements");
 
 test("jQuery",function(){
-	
 	expect( 2 );
 	
 	// make sure the right jquery is included
 	ok( window.jQuery, "jQuery exists" );
 	ok( parseFloat( jQuery([]).jquery ) >= 1.8, "jQuery version is 1.8 or greater" );
-
 });
 
 test("Installation",function(){
@@ -21,4 +19,5 @@ test("Installation",function(){
 	ok( jQuery.event.special.dragend, '"dragend" special event is defined' );
 	ok( jQuery([]).drag, "$.fn.drag method is defined" );
 	
-});
+});  
+

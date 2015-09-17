@@ -1,7 +1,6 @@
 module("Requirements");
 
 test("jQuery",function(){
-	
 	expect( 2 );
 	
 	// make sure the right jquery is included

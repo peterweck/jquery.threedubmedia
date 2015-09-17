@@ -5,7 +5,7 @@
 	// a simple re-usable test harness object
 	var obj = {
 		init: function( opts ){
-			obj.$div = 	$('<div />')
+			obj.$div = $('<div />')
 				.css({
 					position: 'absolute',
 					top: 0,
@@ -14,7 +14,7 @@
 					width: 100
 				})
 				.appendTo( document.body )
-				.bind("draginit dragstart drag dragend click", opts || {}, function( event ){
+				.bind("draginit dragstart drag dragend click", opts || {}, function ( event ) {
 					obj[ event.type ] += 1;
 					if ( obj.extra[ event.type ] )
 						obj.extra[ event.type ].apply( this, arguments );
@@ -48,7 +48,7 @@
 	};
 			
 	// test DRAGINIT FALSE
-	asyncTest('"draginit" return false',function(){
+	asyncTest('"draginit" return false', function () {
 		expect( 5 );		
 		// test prep
 		obj.init();
@@ -65,7 +65,7 @@
 		obj.done();	
 	});
 
-	asyncTest('"dragstart" return false',function(){
+	asyncTest('"dragstart" return false', function () {
 		expect( 5 );
 		// test prep
 		obj.init();
@@ -82,7 +82,7 @@
 		obj.done();	
 	});
 
-	asyncTest('"drag" return false',function(){
+	asyncTest('"drag" return false', function () {
 		expect( 5 );
 		// test prep
 		obj.init();
@@ -99,7 +99,7 @@
 		obj.done();	
 	});
 
-	asyncTest('"draginit" return new element',function(){
+	asyncTest('"draginit" return new element', function () {
 		expect( 8 );
 		// test prep
 		obj.init();
@@ -119,7 +119,7 @@
 		obj.done();	
 	});
 
-	asyncTest('"draginit" return multiple elements',function(){
+	asyncTest('"draginit" return multiple elements', function () {
 		expect( 5 );
 		// test prep
 		obj.init();
@@ -137,7 +137,7 @@
 	});
 
 
-	asyncTest('"dragstart" return proxy element',function(){
+	asyncTest('"dragstart" return proxy element', function () {
 		expect( 7 );
 		// test prep
 		obj.init();
