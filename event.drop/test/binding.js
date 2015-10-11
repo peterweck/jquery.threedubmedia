@@ -1,21 +1,20 @@
 module("Event Binding");
 
-$.each(['dropinit','dropstart','drop','dropend'],function( i, type ){
-	
-	test('"'+ type +'"',function(){
-	
+$.each(['dropinit', 'dropstart', 'drop', 'dropend'], function ( i, type ) {
+	test('"' + type + '"', function () {
 		expect( 9 );
-		
+
 		// make sure the event handler gets bound to the element
 		var $elem = $('<div />'), 
 		elem = $elem[0],
 		count = 0,
-		fn = function(){
+		fn = function () {
 			count += 1;
-		};
+		},
+		data;
 		
 		ok( $elem.bind( type, fn )[0] == elem, '.bind("'+ type +'", fn )' );
-		ok( $.data( elem, $.event.special.drop.datakey ), "drop data exists" );
+		ok( data = $.data( elem, $.event.special.drop.datakey ), "drop data exists" );
 		ok( $._data( elem, "events" ), "event data exists" );
 		ok( $._data( elem, "events" )[ type ][0], '"'+ type +'" event handler added' );
 		

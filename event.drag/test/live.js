@@ -21,7 +21,7 @@ $.each(["draginit","dragstart","drag","dragend"],function( i, type ){
 		// add a div to test the delegation
 		$drag = $('<div class="drag" />').appendTo( document.body );
 		
-		// manual triggering
+		// check triggering of the event handlers
 		ok( $drag.trigger( type ), '.trigger("'+ type +'")');
 		equal( count, 1, "event was triggered");
 	
@@ -32,6 +32,7 @@ $.each(["draginit","dragstart","drag","dragend"],function( i, type ){
 			.fire("mouseup",{ pageX:51, pageY:51 })
 			.fire("click",{ pageX:51, pageY:51 });
 		
+		// check the event handler counts
 		equal( count, 2, "event was delegated");
 
 		// remove delegation

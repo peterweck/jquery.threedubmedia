@@ -1,11 +1,11 @@
-;(function( $, window ){
+;(function ( $, window ) {
 
 /*
 	http://www.w3.org/TR/DOM-Level-3-Events/#event-type-wheel
 */
 
 // jQuery method
-$.fn.fire = function( type, opts ){
+$.fn.fire = function ( type, opts ) {
 	opts = opts || {};
 	// translate pageX to clientX
 	if ( opts.pageX && !opts.clientX )	
@@ -14,7 +14,7 @@ $.fn.fire = function( type, opts ){
 	if ( opts.pageY && !opts.clientY )	
 		opts.clientY = opts.pageY - $( window ).scrollTop();
 	// iterate the jquery collection	
-	return this.each(function(){
+	return this.each(function () {
 		// clone options uniquely for each instance
 		opts = $.extend( {}, $.fire.defaults, opts );
 		// instanitate a new event
@@ -23,7 +23,7 @@ $.fn.fire = function( type, opts ){
 };		   
 
 // Constructor
-$.fire = function( element, type, opts ){
+$.fire = function ( element, type, opts ) {
 	this.element = element;
 	this.type = type;
 	this.event = this.create( opts );
@@ -49,8 +49,8 @@ $.fire.defaults = {
 
 // Methods
 $.fire.prototype = {
-	create: function( opts ){
-		switch ( this.type ){
+	create: function ( opts ) {
+		switch ( this.type ) {
 			case "mousemove":
 				opts.cancelable = false;
 			case "mousedown":
@@ -71,9 +71,9 @@ $.fire.prototype = {
 				return this.event( opts );
 		}
 	},
-	event: function( opts ){
+	event: function ( opts ) {
 		var event;
-		if ( document.createEvent ){
+		if ( document.createEvent ) {
 			event = document.createEvent("HTMLEvents");
 			event.initEvent(
 				this.type, 
@@ -101,9 +101,9 @@ $.fire.prototype = {
 		}
 		return event;			
 	},
-	mouse: function( opts ){
+	mouse: function ( opts ) {
 		var event;
-		if ( document.createEvent ){
+		if ( document.createEvent ) {
 			event = document.createEvent("MouseEvents");
 			event.initMouseEvent(
 				this.type, 
@@ -129,7 +129,7 @@ $.fire.prototype = {
 		}
 		return event;
 	},
-	key: function( opts ){
+	key: function ( opts ) {
 		var event;
 		if ( document.createEvent ) {
 			try {
@@ -147,24 +147,26 @@ $.fire.prototype = {
 					opts.charCode
 				);
 			} 
-			catch ( err ){
+			catch ( err ) {
 				event = this.event( opts );
 			}
 		} 
-		else if ( document.createEventObject ){
+		else if ( document.createEventObject ) {
 			event = this.event( opts );
 		}
-		if ( $.browser.msie || $.browser.opera ){
+		if ( $.browser.msie || $.browser.opera ) {
 			event.keyCode = opts.charCode > 0 ? opts.charCode : opts.keyCode;
 			event.charCode = undefined;
 		}
 		return event;
 	},
-	dispatch: function(){
-		if ( this.element.dispatchEvent )
+	dispatch: function () {
+		if ( this.element.dispatchEvent ) {
 			this.element.dispatchEvent( this.event );
-		else if ( this.element.fireEvent )
-			this.element.fireEvent( 'on'+this.type, this.event );
+		}
+		else if ( this.element.fireEvent ) {
+			this.element.fireEvent( 'on' + this.type, this.event );
+		}
 	}
 };
 
