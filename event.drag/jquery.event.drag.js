@@ -418,7 +418,7 @@ var drag = $special.drag = {
         return obj;
     },
 
-	// Determine if the argument is an element or jquery instance 
+    // Determine if the argument is an element or jquery instance 
     // and only pass it through when it is, otherwise produce `undefined` instead
     element: function ( arg ) {
         if ( arg && ( arg.jquery || arg.nodeType === 1 ) ) {
