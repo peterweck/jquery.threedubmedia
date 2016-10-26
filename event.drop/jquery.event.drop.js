@@ -8,18 +8,7 @@
 // REQUIRES: jquery 1.8+, event.drag 2.2.2+
 
 (function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(['jquery', 'jquery.event.drag'], factory);
-    } else if (typeof exports === 'object') {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like environments that support module.exports,
-        // like Node.
-        factory(require('jquery'), require('jquery.event.drag'));
-    } else {
-        // Browser globals
-        factory(root.jQuery);
-    }
+    factory(root.jQuery);
 }(this, function ($) {
 // Events: drop, dropstart, dropend
 

@@ -10,18 +10,7 @@
 // REQUIRES: jquery 1.8+
 
 (function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like environments that support module.exports,
-        // like Node.
-        factory(require('jquery'));
-    } else {
-        // Browser globals
-        factory(root.jQuery);
-    }
+    factory(root.jQuery);
 }(this, function ($) {
 // Events: draginit, dragstart, drag, dragend
 
@@ -366,7 +355,8 @@ var drag = $special.drag = {
                         ia.proxy = $( drag.element( result ) || ia.drag )[0];
                     }
                     // remember this result
-                    ia.results.push( drag.element( result ) || subject );
+                    //ia.results.push( drag.element( result ) || subject );
+                    ia.results.push( drag.element( result ) );
                     // forget the event result, for recycling
                     delete event.result;
                     // break on cancelled handler
